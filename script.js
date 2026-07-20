@@ -69,3 +69,52 @@ document.querySelectorAll(".lang-btn").forEach(function (btn) {
     window.location.href = "mailto:" + EMAIL + "?subject=" + asunto + "&body=" + cuerpo;
   });
 })();
+
+// Showcase: pantalla estilo navegador que rota entre webs reales en vivo
+(function liveShowcase() {
+  const frame = document.getElementById("showcaseFrame");
+  const urlEl = document.getElementById("showcaseUrl");
+  const nameEl = document.getElementById("showcaseName");
+  const linkEl = document.getElementById("showcaseLink");
+  if (!frame || !urlEl || !nameEl || !linkEl) return;
+
+  const sites = [
+    { url: "https://studio-beauty-zurich.vercel.app", host: "studio-beauty-zurich.vercel.app", es: "Estudio de belleza — Zúrich", de: "Beauty-Studio — Zürich" },
+    { url: "https://handwerk-uster.vercel.app",       host: "handwerk-uster.vercel.app",       es: "Web para artesano — Uster", de: "Handwerker-Webseite — Uster" },
+    { url: "https://elfennir-free-audit.vercel.app",  host: "elfennir-free-audit.vercel.app",  es: "Landing de auditoría gratis", de: "Gratis-Audit Landingpage" }
+  ];
+  let i = 0;
+
+  // Escalar el iframe (base 1280px) al ancho real del contenedor
+  function fitFrame() {
+    const body = frame.parentElement;
+    if (!body) return;
+    const scale = body.clientWidth / 1280;
+    frame.style.transform = "scale(" + scale + ")";
+    body.style.height = (800 * scale) + "px";
+  }
+
+  function render() {
+    const s = sites[i];
+    const lang = document.documentElement.lang === "de" ? "de" : "es";
+    frame.style.opacity = "0";
+    frame.src = s.url;
+    urlEl.textContent = s.host;
+    nameEl.textContent = s[lang];
+    linkEl.href = s.url;
+    setTimeout(function () { frame.style.opacity = "1"; }, 350);
+  }
+
+  fitFrame();
+  render();
+  window.addEventListener("resize", fitFrame);
+  // Actualizar el nombre al cambiar de idioma
+  document.querySelectorAll(".lang-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const s = sites[i];
+      nameEl.textContent = document.documentElement.lang === "de" ? s.de : s.es;
+    });
+  });
+  // Rotar cada 6 segundos
+  setInterval(function () { i = (i + 1) % sites.length; render(); }, 6000);
+})();
