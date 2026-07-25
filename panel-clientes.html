@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Panel de Clientes — ELFENNIR</title>
+<style>
+  :root{
+    --bg:#0f1115; --bg2:#161922; --card:#1c2030; --text:#e8eaf0;
+    --muted:#a2a8b8; --accent:#5b8cff; --accent2:#7c5bff; --border:#262b3a;
+    --green:#28c840; --amber:#febc2e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:0 0 40px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:620px;margin:0 auto;padding:0 16px}
+  header{padding:24px 0 10px;text-align:center}
+  header h1{font-size:22px;font-weight:800;letter-spacing:-.3px}
+  header h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);font-size:13px;margin-top:2px}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 6px;text-align:center}
+  .stat b{display:block;font-size:22px;font-weight:800}
+  .stat small{color:var(--muted);font-size:11px}
+  .stat.goal b{color:var(--accent)}
+  .stat.rep b{color:var(--amber)}
+  .stat.cli b{color:var(--green)}
+
+  .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:16px}
+  .panel h2{font-size:14px;font-weight:700;margin-bottom:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  label{display:block;font-size:12px;color:var(--muted);margin:8px 0 4px}
+  input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 12px;color:var(--text);font-family:inherit;font-size:15px}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+  .row{display:flex;gap:10px}.row>div{flex:1}
+  textarea{resize:vertical;min-height:96px;margin-top:10px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;cursor:pointer;border-radius:10px;font-weight:600;font-size:14px;padding:11px 16px;transition:transform .1s,opacity .2s}
+  .btn:active{transform:scale(.97)}
+  .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;width:100%;margin-top:12px}
+  .btn-copy{background:var(--bg2);color:var(--text);border:1px solid var(--border);margin-top:10px;width:100%}
+  .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+
+  /* lista */
+  .prospect{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+  .prospect .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .prospect .name{font-weight:700;font-size:15px}
+  .prospect .meta{color:var(--muted);font-size:12px;margin-top:1px}
+  .badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .b-sent{background:rgba(91,140,255,.15);color:var(--accent)}
+  .b-rep{background:rgba(254,188,46,.15);color:var(--amber)}
+  .b-cli{background:rgba(40,200,64,.15);color:var(--green)}
+  .b-desc{background:rgba(162,168,184,.15);color:var(--muted)}
+  .actions{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+  .actions button{flex:1;min-width:70px;padding:7px 4px;font-size:12px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--muted);cursor:pointer}
+  .actions button.on{border-color:transparent;color:#fff}
+  .actions button.on.s{background:var(--accent)}
+  .actions button.on.r{background:var(--amber);color:#111}
+  .actions button.on.c{background:var(--green);color:#111}
+  .actions button.on.d{background:#3a3f52}
+  .empty{color:var(--muted);text-align:center;padding:24px;font-size:14px}
+  .del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1}
+  .offline-note{text-align:center;color:var(--muted);font-size:11px;margin-top:8px;opacity:.8}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1><span>Panel de Clientes</span> · ELFENNIR</h1>
+    <p>Funciona sin internet · guarda todo en tu móvil</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat goal"><b id="stSent">0</b><small>Hoy /10</small></div>
+    <div class="stat"><b id="stTotal">0</b><small>Total</small></div>
+    <div class="stat rep"><b id="stRep">0</b><small>Respondió</small></div>
+    <div class="stat cli"><b id="stCli">0</b><small>Clientes</small></div>
+  </div>
+
+  <div class="panel">
+    <h2>Nuevo cliente potencial</h2>
+    <label>Nombre del negocio</label>
+    <input id="fName" placeholder="Ej. Pizzería Bella Napoli" />
+    <div class="row">
+      <div>
+        <label>Rubro</label>
+        <select id="fType">
+          <option value="restaurante">Restaurante / Pizzería</option>
+          <option value="belleza">Peluquería / Belleza</option>
+          <option value="handwerk">Oficios / Handwerk</option>
+          <option value="tienda">Tienda / Comercio</option>
+          <option value="salud">Salud / Consulta</option>
+          <option value="otro">Otro negocio</option>
+        </select>
+      </div>
+      <div>
+        <label>Canal</label>
+        <select id="fChannel">
+          <option value="wa">WhatsApp</option>
+          <option value="email">Email</option>
+          <option value="ig">Instagram DM</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>Idioma</label>
+        <select id="fLang"><option value="es">Español</option><option value="de">Deutsch</option></select>
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <button class="btn btn-ghost" style="width:100%" onclick="genMessage()">✍️ Generar mensaje</button>
+      </div>
+    </div>
+    <textarea id="fMsg" placeholder="El mensaje listo aparecerá aquí…"></textarea>
+    <button class="btn btn-copy" onclick="copyMsg()">📋 Copiar mensaje</button>
+    <button class="btn btn-primary" onclick="addProspect()">➕ Guardar como enviado</button>
+    <div class="offline-note">Todo se guarda solo en este teléfono. Sin conexión necesaria.</div>
+  </div>
+
+  <div class="panel">
+    <h2>Mis clientes potenciales</h2>
+    <div id="list"></div>
+  </div>
+</div>
+
+<script>
+const DEMOS = {
+  restaurante:"handwerk-uster.vercel.app",
+  belleza:"studio-beauty-zurich.vercel.app",
+  handwerk:"handwerk-uster.vercel.app",
+  tienda:"handwerk-uster.vercel.app",
+  salud:"studio-beauty-zurich.vercel.app",
+  otro:"handwerk-uster.vercel.app"
+};
+const RUBRO_ES = {restaurante:"tu restaurante",belleza:"tu salón",handwerk:"tu negocio de oficios",tienda:"tu tienda",salud:"tu consulta",otro:"tu negocio"};
+const RUBRO_DE = {restaurante:"dein Restaurant",belleza:"dein Salon",handwerk:"dein Handwerksbetrieb",tienda:"dein Geschäft",salud:"deine Praxis",otro:"dein Unternehmen"};
+
+function tpl(name,type,channel,lang){
+  const demo="https://"+DEMOS[type];
+  if(lang==="de"){
+    const r=RUBRO_DE[type];
+    if(channel==="email") return "Betreff: Neue Webseite für "+name+" (Gratis-Demo)\n\nHallo "+name+",\nich gestalte moderne Webseiten für lokale Unternehmen. Beispiel: "+demo+"\nIch baue dir eine Gratis-Demo für "+r+" – du zahlst nur, wenn sie dir gefällt.\nInteresse?\nGrüsse, Yassin — elfennir.com";
+    return "Hallo "+name+" 👋 Ich baue Webseiten für Unternehmen wie "+r+". Beispiel: "+demo+" — ich mache dir eine Gratis-Demo. Diese Woche zeigen? Unverbindlich.";
+  }
+  const r=RUBRO_ES[type];
+  if(channel==="email") return "Asunto: Una web nueva para "+name+" (demo gratis)\n\nHola "+name+",\ndiseño webs modernas para negocios locales. Un ejemplo: "+demo+"\nTe preparo una demo gratis para "+r+" y solo pagas si te encanta.\n¿Te interesa?\nSaludos, Yassin — elfennir.com";
+  return "Hola "+name+" 👋 Hago webs para negocios como "+r+". Mira un ejemplo: "+demo+" — te preparo una demo gratis. ¿Te la enseño esta semana? Sin compromiso.";
+}
+
+function genMessage(){
+  const name=(document.getElementById("fName").value||"").trim()||"[negocio]";
+  const type=document.getElementById("fType").value;
+  const channel=document.getElementById("fChannel").value;
+  const lang=document.getElementById("fLang").value;
+  document.getElementById("fMsg").value=tpl(name,type,channel,lang);
+}
+function copyMsg(){
+  const t=document.getElementById("fMsg");
+  if(!t.value) genMessage();
+  navigator.clipboard.writeText(t.value).then(()=>flash("📋 Copiado")).catch(()=>{t.select();document.execCommand("copy");flash("📋 Copiado");});
+}
+function flash(msg){
+  const d=document.createElement("div");
+  d.textContent=msg;
+  d.style.cssText="position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#28c840;color:#111;font-weight:700;padding:10px 18px;border-radius:999px;z-index:99;font-size:14px";
+  document.body.appendChild(d); setTimeout(()=>d.remove(),1300);
+}
+
+const KEY="elfennir_prospects_v1";
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)||"[]"); }catch(e){ return []; } }
+function save(a){ localStorage.setItem(KEY,JSON.stringify(a)); }
+function today(){ return new Date().toISOString().slice(0,10); }
+
+function addProspect(){
+  const name=(document.getElementById("fName").value||"").trim();
+  if(!name){ flash("⚠️ Escribe el nombre"); return; }
+  const arr=load();
+  arr.unshift({id:Date.now(),name,type:document.getElementById("fType").value,channel:document.getElementById("fChannel").value,lang:document.getElementById("fLang").value,status:"sent",date:today()});
+  save(arr);
+  document.getElementById("fName").value="";document.getElementById("fMsg").value="";
+  render(); flash("✅ Guardado como enviado");
+}
+function setStatus(id,st){
+  const arr=load(); const p=arr.find(x=>x.id===id); if(!p)return;
+  p.status=(p.status===st)?"sent":st; save(arr); render();
+}
+function del(id){ save(load().filter(x=>x.id!==id)); render(); }
+
+const CH={wa:"WhatsApp",email:"Email",ig:"Instagram"};
+const TY={restaurante:"Restaurante",belleza:"Belleza",handwerk:"Handwerk",tienda:"Tienda",salud:"Salud",otro:"Negocio"};
+const BADGE={sent:["b-sent","Enviado"],replied:["b-rep","Respondió"],client:["b-cli","Cliente ✅"],discarded:["b-desc","Descartado"]};
+
+function render(){
+  const arr=load(); const list=document.getElementById("list");
+  const t=today();
+  document.getElementById("stSent").textContent=arr.filter(p=>p.date===t).length;
+  document.getElementById("stTotal").textContent=arr.length;
+  document.getElementById("stRep").textContent=arr.filter(p=>p.status==="replied"||p.status==="client").length;
+  document.getElementById("stCli").textContent=arr.filter(p=>p.status==="client").length;
+  if(arr.length===0){ list.innerHTML='<div class="empty">Aún no hay nadie. Genera un mensaje, envíalo y guárdalo aquí. 🚀</div>'; return; }
+  list.innerHTML="";
+  for(const p of arr){
+    const b=BADGE[p.status]||BADGE.sent;
+    const el=document.createElement("div"); el.className="prospect";
+    el.innerHTML=
+      '<div class="top"><div><div class="name"></div><div class="meta">'+(TY[p.type]||"")+" · "+(CH[p.channel]||"")+" · "+p.date+'</div></div>'+
+      '<div style="display:flex;gap:8px;align-items:center"><span class="badge '+b[0]+'">'+b[1]+'</span><button class="del" title="Borrar">✕</button></div></div>'+
+      '<div class="actions">'+
+        '<button class="s'+(p.status==="sent"?" on s":"")+'" data-st="sent">Enviado</button>'+
+        '<button class="r'+(p.status==="replied"?" on r":"")+'" data-st="replied">Respondió</button>'+
+        '<button class="c'+(p.status==="client"?" on c":"")+'" data-st="client">Cliente</button>'+
+        '<button class="d'+(p.status==="discarded"?" on d":"")+'" data-st="discarded">Descartar</button>'+
+      '</div>';
+    el.querySelector(".name").textContent=p.name;
+    el.querySelector(".del").onclick=()=>{ if(confirm("¿Borrar a "+p.name+"?")) del(p.id); };
+    el.querySelectorAll(".actions button").forEach(btn=>btn.onclick=()=>setStatus(p.id,btn.dataset.st));
+    list.appendChild(el);
+  }
+}
+genMessage();
+render();
+</script>
+</body>
+</html>
