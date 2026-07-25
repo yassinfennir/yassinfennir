@@ -27,7 +27,7 @@ desde el iPhone, el PC o cualquier sitio. Este es el mapa de tu camino.
 
 | Proyecto | Estado | Enlace | Siguiente paso |
 |---|---|---|---|
-| Svenia — Quinceañera (galería QR) | En arreglo | luxiora.org | Subir fotos/videos OK |
+| Svenia — Quinceañera (galería QR) | ✅ Terminada | luxiora.org | Pedir reseña a la clienta |
 | _(añade aquí cada cliente nuevo)_ | | | |
 
 > Regla: **cada proyecto nuevo entra en esta tabla el mismo día.** Así nunca
