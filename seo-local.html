@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>SEO Local — ELFENNIR</title>
+<style>
+  :root{--bg:#0f1115;--card:#1c2030;--bg2:#161922;--text:#e8eaf0;--muted:#a2a8b8;--accent:#5b8cff;--accent2:#7c5bff;--border:#262b3a;--green:#28c840}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:0 0 50px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:0 16px}
+  header{padding:22px 0 6px;text-align:center}
+  header h1{font-size:21px;font-weight:800}
+  header h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);font-size:13px}
+  .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin:16px 0}
+  .panel h2{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  label{display:block;font-size:12px;color:var(--muted);margin:8px 0 4px}
+  input,select{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 12px;color:var(--text);font-family:inherit;font-size:15px}
+  input:focus,select:focus{outline:none;border-color:var(--accent)}
+  .row{display:flex;gap:10px}.row>div{flex:1}
+  .btn{border:none;cursor:pointer;border-radius:10px;font-weight:700;font-size:15px;padding:13px 16px;width:100%;margin-top:12px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff}
+  .out{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px}
+  .out .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);font-weight:700;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+  .out .val{font-size:14px;color:var(--text);white-space:pre-wrap;word-break:break-word}
+  .out .count{font-size:11px;color:var(--muted);font-weight:500}
+  .copy{background:var(--card);border:1px solid var(--border);color:var(--text);border-radius:7px;padding:4px 10px;font-size:12px;cursor:pointer}
+  .copy:active{transform:scale(.96)}
+  code{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#b8c7ff}
+  .kw{display:inline-block;background:rgba(91,140,255,.12);border:1px solid var(--border);border-radius:999px;padding:4px 11px;margin:3px 3px 0 0;font-size:13px}
+  ul.check{list-style:none;margin-top:4px}
+  ul.check li{padding:5px 0 5px 24px;position:relative;font-size:14px;color:var(--text)}
+  ul.check li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:800}
+  .note{font-size:12px;color:var(--muted);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1><span>SEO Local</span> · ELFENNIR</h1>
+    <p>Paquete SEO profesional para cualquier cliente · offline</p>
+  </header>
+
+  <div class="panel">
+    <h2>Datos del cliente</h2>
+    <label>Nombre del negocio</label>
+    <input id="fName" value="Podo and More" oninput="gen()" />
+    <div class="row">
+      <div><label>Servicio principal</label><input id="fService" value="Medizinische Fusspflege" oninput="gen()" /></div>
+      <div><label>Ciudad</label><input id="fCity" value="Adliswil" oninput="gen()" /></div>
+    </div>
+    <div class="row">
+      <div><label>Teléfono</label><input id="fPhone" placeholder="+41 ..." oninput="gen()" /></div>
+      <div><label>Idioma</label><select id="fLang" onchange="gen()"><option value="de">Deutsch</option><option value="es">Español</option></select></div>
+    </div>
+    <div class="note">Cambia estos datos y tendrás el SEO listo para <b>cualquier cliente</b>.</div>
+  </div>
+
+  <div id="output"></div>
+</div>
+
+<script>
+function v(id){return (document.getElementById(id).value||"").trim();}
+function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+function flash(m){const d=document.createElement("div");d.textContent=m;d.style.cssText="position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#28c840;color:#111;font-weight:700;padding:10px 18px;border-radius:999px;z-index:99;font-size:14px";document.body.appendChild(d);setTimeout(()=>d.remove(),1300);}
+function copy(txt){navigator.clipboard.writeText(txt).then(()=>flash("📋 Copiado")).catch(()=>{const t=document.createElement("textarea");t.value=txt;document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();flash("📋 Copiado");});}
+
+const L={
+  de:{title:"Titel-Tag (Google-Titel)",meta:"Meta-Beschreibung",h1:"H1 (Hauptüberschrift)",h2:"H2-Überschriften",kw:"Ziel-Keywords",schema:"Schema-Code (LocalBusiness)",check:"Checkliste zum Umsetzen",
+    metaText:(s,c,n)=>s+" in "+c+" bei "+n+". Erfahren, freundlich und zuverlässig. Jetzt Termin buchen!",
+    h2s:(s,c)=>["Warum "+s+" in "+c+"?","Unsere Leistungen","Termin & Kontakt"],
+    checks:["Google Business Profil anlegen/optimieren (wichtigster Punkt lokal)","Name, Adresse, Telefon (NAP) überall identisch","Keyword im Titel, H1 und ersten 100 Wörtern","Schema-Code in die Seite einfügen","5+ echte Kundenbewertungen sammeln","Eigene Seite pro Stadt/Leistung","Schnelle Ladezeit & mobil optimiert","Interne Links zwischen den Seiten"]},
+  es:{title:"Título (Title tag)",meta:"Meta descripción",h1:"H1 (título principal)",h2:"Encabezados H2",kw:"Palabras clave objetivo",schema:"Código Schema (LocalBusiness)",check:"Checklist para aplicar",
+    metaText:(s,c,n)=>s+" en "+c+" en "+n+". Profesional, cercano y de confianza. ¡Reserva tu cita hoy!",
+    h2s:(s,c)=>["¿Por qué "+s+" en "+c+"?","Nuestros servicios","Cita y contacto"],
+    checks:["Crear/optimizar el Perfil de Google Business (lo nº1 en local)","Nombre, dirección y teléfono (NAP) idénticos en todas partes","Keyword en el título, H1 y primeras 100 palabras","Pegar el código Schema en la web","Conseguir 5+ reseñas reales de clientes","Una página por ciudad/servicio","Carga rápida y optimizada para móvil","Enlaces internos entre las páginas"]}
+};
+
+function keywords(s,c){
+  const sl=s.toLowerCase(), cl=c.toLowerCase();
+  return [s+" "+c, sl+" in der Nähe", sl+" "+cl+" preise", "beste "+sl+" "+cl, sl+" termin "+cl, sl+" "+cl+" buchen"];
+}
+function schema(n,s,c,ph){
+  return JSON.stringify({"@context":"https://schema.org","@type":"LocalBusiness","name":n,"description":s+" — "+c,"telephone":ph||"","address":{"@type":"PostalAddress","addressLocality":c,"addressCountry":"CH"},"areaServed":c},null,2);
+}
+function block(lbl,val,isCode){
+  const id="b"+Math.random().toString(36).slice(2,7);
+  window["__"+id]=val;
+  return '<div class="out"><div class="lbl">'+lbl+'<button class="copy" onclick="copy(window.__'+id+')">📋 Copiar</button></div><div class="val">'+(isCode?'<code>'+esc(val)+'</code>':esc(val))+'</div></div>';
+}
+
+function gen(){
+  const lang=v("fLang")||"de",t=L[lang];
+  const n=v("fName")||"[Negocio]", s=v("fService")||"[Servicio]", c=v("fCity")||"[Ciudad]", ph=v("fPhone");
+  const title=s+" "+c+" – "+n;
+  const meta=t.metaText(s,c,n);
+  const h1=s+" in "+c;
+  const h2=t.h2s(s,c);
+  const kws=keywords(s,c);
+  let html="";
+  html+='<div class="panel"><h2>Paquete SEO — '+esc(n)+'</h2>';
+  html+=block(t.title+"  ("+title.length+"/60)",title);
+  html+=block(t.meta+"  ("+meta.length+"/155)",meta);
+  html+=block(t.h1,h1);
+  html+=block(t.h2,h2.join("\n"));
+  html+='<div class="out"><div class="lbl">'+t.kw+'</div><div>'+kws.map(k=>'<span class="kw">'+esc(k)+'</span>').join("")+'</div></div>';
+  html+=block(t.schema,schema(n,s,c,ph),true);
+  html+='<div class="out"><div class="lbl">'+t.check+'</div><ul class="check">'+t.checks.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul></div>';
+  html+='</div>';
+  document.getElementById("output").innerHTML=html;
+}
+gen();
+</script>
+</body>
+</html>
