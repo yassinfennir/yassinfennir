@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Facturas — ELFENNIR</title>
+<style>
+  :root{--bg:#0f1115;--card:#1c2030;--text:#e8eaf0;--muted:#a2a8b8;--accent:#5b8cff;--accent2:#7c5bff;--border:#262b3a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:0 0 50px}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px}
+  header{padding:22px 0 6px;text-align:center}
+  header h1{font-size:21px;font-weight:800}
+  header h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);font-size:13px}
+  .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin:16px 0}
+  .panel h2{font-size:13px;font-weight:700;margin-bottom:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  label{display:block;font-size:12px;color:var(--muted);margin:8px 0 4px}
+  input,select{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 12px;color:var(--text);font-family:inherit;font-size:15px}
+  input:focus,select:focus{outline:none;border-color:var(--accent)}
+  .row{display:flex;gap:10px}.row>div{flex:1}
+  .li{display:flex;gap:8px;margin-bottom:8px}
+  .li input.desc{flex:3}.li input.amt{flex:1}
+  .li button{background:var(--bg);border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:0 12px;cursor:pointer}
+  .btn{border:none;cursor:pointer;border-radius:10px;font-weight:700;font-size:15px;padding:13px 16px;width:100%;margin-top:12px}
+  .btn-add{background:var(--bg);color:var(--text);border:1px solid var(--border);font-weight:600}
+  .btn-print{background:#28c840;color:#0a2a12}
+  .hint{font-size:11px;color:var(--muted);margin-top:6px;opacity:.85}
+
+  .doc{background:#fff;color:#1a1a1a;border-radius:14px;padding:38px 34px;margin:16px 0;font-size:15px;line-height:1.6}
+  .doc .d-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #e6e6e6;padding-bottom:16px;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+  .doc .brand{font-size:22px;font-weight:800;letter-spacing:1px;color:#5b8cff}
+  .doc .brand small{display:block;font-size:12px;font-weight:500;color:#666;letter-spacing:0;white-space:pre-line}
+  .doc .d-meta{text-align:right;font-size:13px;color:#666}
+  .doc .d-meta b{color:#111;font-size:15px}
+  .doc h3{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#888;margin:20px 0 6px}
+  .doc .client{font-weight:700;color:#111;white-space:pre-line}
+  table{width:100%;border-collapse:collapse;margin-top:8px}
+  th,td{text-align:left;padding:9px 4px;border-bottom:1px solid #eee;font-size:14px}
+  th{color:#888;font-weight:600;font-size:12px;text-transform:uppercase}
+  td.r,th.r{text-align:right}
+  .total-row td{border-bottom:none;font-size:18px;font-weight:800;color:#111;padding-top:14px}
+  .pay{background:#f4f7ff;border:1px solid #dbe4ff;border-radius:10px;padding:12px 16px;margin-top:18px;font-size:14px;color:#333;white-space:pre-line}
+  .foot{margin-top:22px;border-top:1px solid #eee;padding-top:12px;font-size:12px;color:#999;text-align:center}
+  @media print{body{background:#fff;padding:0}.no-print{display:none!important}.wrap{max-width:100%;padding:0}.doc{border-radius:0;margin:0;padding:32px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="no-print">
+    <h1><span>Facturas</span> · ELFENNIR</h1>
+    <p>Crea una factura profesional y guárdala en PDF</p>
+  </header>
+
+  <div class="panel no-print">
+    <h2>Tus datos (se guardan una vez)</h2>
+    <div class="row">
+      <div><label>Estudio / Nombre</label><input id="bName" value="ELFENNIR — Yassin Fennir" oninput="saveBiz()" /></div>
+      <div><label>Email</label><input id="bEmail" value="glodrakokick@gmail.com" oninput="saveBiz()" /></div>
+    </div>
+    <label>Dirección</label><input id="bAddr" placeholder="Calle, código postal, ciudad, país" oninput="saveBiz()" />
+    <label>IBAN / datos de pago</label><input id="bIban" placeholder="CH.. o el método que uses" oninput="saveBiz()" />
+    <div class="hint">Rellénalo una vez; queda guardado en este dispositivo.</div>
+  </div>
+
+  <div class="panel no-print">
+    <h2>Datos de la factura</h2>
+    <div class="row">
+      <div><label>Nº de factura</label><input id="fNo" oninput="render()" /></div>
+      <div><label>Idioma</label><select id="fLang" onchange="render()"><option value="es">Español</option><option value="de">Deutsch</option></select></div>
+    </div>
+    <label>Cliente (nombre y dirección)</label>
+    <input id="fClient" placeholder="Ej. Zahnarztpraxis Dr. Meier, Zürich" oninput="render()" />
+    <label>Conceptos</label>
+    <div id="items"></div>
+    <button class="btn btn-add" onclick="addItem()">➕ Añadir concepto</button>
+    <div class="row" style="margin-top:12px">
+      <div><label>Vencimiento (días)</label><input id="fDue" type="number" min="1" value="14" oninput="render()" /></div>
+      <div><label>&nbsp;</label><button class="btn btn-print" style="margin-top:0" onclick="window.print()">🖨️ Guardar PDF</button></div>
+    </div>
+  </div>
+
+  <div class="doc" id="doc"></div>
+</div>
+
+<script>
+const T={
+  es:{invoice:"FACTURA",no:"Nº",date:"Fecha",due:"Vence",bill:"Facturar a",desc:"Concepto",amt:"Importe",total:"TOTAL",
+      pay:"Datos de pago",terms:"Pago en los próximos {d} días.",thanks:"Gracias por confiar en ELFENNIR — Yassin Fennir"},
+  de:{invoice:"RECHNUNG",no:"Nr.",date:"Datum",due:"Fällig",bill:"Rechnung an",desc:"Position",amt:"Betrag",total:"TOTAL",
+      pay:"Zahlungsdaten",terms:"Zahlbar innerhalb von {d} Tagen.",thanks:"Danke für Ihr Vertrauen — Yassin Fennir · ELFENNIR"}
+};
+const BKEY="elfennir_biz_v1", NKEY="elfennir_invoice_counter";
+let items=[{d:"Diseño y desarrollo de página web",a:900}];
+
+function saveBiz(){
+  localStorage.setItem(BKEY,JSON.stringify({name:v("bName"),email:v("bEmail"),addr:v("bAddr"),iban:v("bIban")}));
+  render();
+}
+function loadBiz(){
+  try{const b=JSON.parse(localStorage.getItem(BKEY)||"null");if(b){set("bName",b.name);set("bEmail",b.email);set("bAddr",b.addr);set("bIban",b.iban);}}catch(e){}
+}
+function v(id){return (document.getElementById(id).value||"").trim();}
+function set(id,val){if(val!=null)document.getElementById(id).value=val;}
+function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+
+function defaultNo(){
+  let n=parseInt(localStorage.getItem(NKEY)||"0",10)+1;
+  return new Date().getFullYear()+"-"+String(n).padStart(3,"0");
+}
+function renderItems(){
+  const box=document.getElementById("items");box.innerHTML="";
+  items.forEach((it,i)=>{
+    const row=document.createElement("div");row.className="li";
+    row.innerHTML='<input class="desc" placeholder="Concepto" value="'+esc(it.d)+'"><input class="amt" type="number" min="0" placeholder="CHF" value="'+(it.a||"")+'"><button title="Quitar">✕</button>';
+    const [d,a]=row.querySelectorAll("input");
+    d.oninput=()=>{items[i].d=d.value;render();};
+    a.oninput=()=>{items[i].a=parseFloat(a.value||"0");renderDoc();};
+    row.querySelector("button").onclick=()=>{if(items.length>1){items.splice(i,1);renderItems();render();}};
+    box.appendChild(row);
+  });
+}
+function addItem(){items.push({d:"",a:0});renderItems();render();}
+
+function fmtDate(lang){return new Date().toLocaleDateString(lang==="de"?"de-CH":"es-ES",{day:"2-digit",month:"long",year:"numeric"});}
+function dueDate(lang,days){const d=new Date();d.setDate(d.getDate()+(parseInt(days||"14",10)));return d.toLocaleDateString(lang==="de"?"de-CH":"es-ES",{day:"2-digit",month:"long",year:"numeric"});}
+
+function renderDoc(){
+  const lang=v("fLang")||"es",t=T[lang];
+  const no=v("fNo")||defaultNo();
+  const client=v("fClient")||(lang==="de"?"[Kunde]":"[Cliente]");
+  const days=document.getElementById("fDue").value||"14";
+  const total=items.reduce((s,i)=>s+(parseFloat(i.a)||0),0);
+  const rows=items.filter(i=>i.d||i.a).map(i=>'<tr><td>'+esc(i.d||"—")+'</td><td class="r">CHF '+(parseFloat(i.a)||0)+'</td></tr>').join('')||'<tr><td>—</td><td class="r">CHF 0</td></tr>';
+  const payLines=[v("bIban")||"—"].concat(v("bEmail")?[v("bEmail")]:[]).join("\n");
+  document.getElementById("doc").innerHTML=
+    '<div class="d-head"><div class="brand">'+(esc(v("bName"))||"ELFENNIR")+'<small>'+esc([v("bAddr"),v("bEmail")].filter(Boolean).join("\n"))+'</small></div>'+
+    '<div class="d-meta"><b>'+t.invoice+'</b><br>'+t.no+': '+esc(no)+'<br>'+t.date+': '+fmtDate(lang)+'<br>'+t.due+': '+dueDate(lang,days)+'</div></div>'+
+    '<h3>'+t.bill+'</h3><div class="client">'+esc(client)+'</div>'+
+    '<table><thead><tr><th>'+t.desc+'</th><th class="r">'+t.amt+'</th></tr></thead><tbody>'+rows+
+    '<tr class="total-row"><td>'+t.total+'</td><td class="r">CHF '+total+'</td></tr></tbody></table>'+
+    '<div class="pay"><b>'+t.pay+'</b>\n'+esc(payLines)+'\n\n'+t.terms.replace("{d}",days)+'</div>'+
+    '<div class="foot">'+t.thanks+'</div>';
+}
+function render(){ renderDoc(); }
+
+loadBiz();
+document.getElementById("fNo").value=defaultNo();
+renderItems();
+render();
+</script>
+</body>
+</html>
