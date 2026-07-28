@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Presupuestos — ELFENNIR</title>
+<style>
+  :root{--bg:#0f1115;--card:#1c2030;--text:#e8eaf0;--muted:#a2a8b8;--accent:#5b8cff;--accent2:#7c5bff;--border:#262b3a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:0 0 50px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:0 16px}
+  header{padding:22px 0 6px;text-align:center}
+  header h1{font-size:21px;font-weight:800}
+  header h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{color:var(--muted);font-size:13px}
+
+  .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;margin:16px 0}
+  .panel h2{font-size:13px;font-weight:700;margin-bottom:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  label{display:block;font-size:12px;color:var(--muted);margin:8px 0 4px}
+  input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:11px 12px;color:var(--text);font-family:inherit;font-size:15px}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+  .row{display:flex;gap:10px}.row>div{flex:1}
+  .btn{border:none;cursor:pointer;border-radius:10px;font-weight:700;font-size:15px;padding:13px 16px;width:100%;margin-top:12px}
+  .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff}
+  .btn-print{background:#28c840;color:#0a2a12}
+
+  /* DOCUMENTO (papel blanco, imprimible) */
+  .doc{background:#fff;color:#1a1a1a;border-radius:14px;padding:38px 34px;margin:16px 0;font-size:15px;line-height:1.6}
+  .doc .d-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #e6e6e6;padding-bottom:16px;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+  .doc .brand{font-size:22px;font-weight:800;letter-spacing:1px;color:#5b8cff}
+  .doc .brand small{display:block;font-size:12px;font-weight:500;color:#666;letter-spacing:0}
+  .doc .d-meta{text-align:right;font-size:13px;color:#666}
+  .doc h3{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#888;margin:22px 0 8px}
+  .doc .client{font-size:18px;font-weight:700;color:#111}
+  .doc ul{margin:6px 0 0 18px}.doc li{margin-bottom:5px}
+  .doc .price-box{display:flex;justify-content:space-between;align-items:center;background:#f4f7ff;border:1px solid #dbe4ff;border-radius:12px;padding:16px 20px;margin:20px 0}
+  .doc .price-box .p-label{font-weight:600;color:#333}
+  .doc .price-box .p-val{font-size:26px;font-weight:800;color:#3b5bdb}
+  .doc .terms{font-size:13px;color:#555}
+  .doc .guarantee{background:#eafaef;border:1px solid #b7ebc6;border-radius:10px;padding:12px 16px;margin-top:16px;color:#1e6b34;font-weight:600;font-size:14px}
+  .doc .foot{margin-top:26px;border-top:1px solid #eee;padding-top:14px;font-size:12px;color:#999;text-align:center}
+
+  @media print{
+    body{background:#fff;padding:0}
+    .no-print{display:none !important}
+    .wrap{max-width:100%;padding:0}
+    .doc{border-radius:0;margin:0;box-shadow:none;padding:32px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="no-print">
+    <h1><span>Presupuestos</span> · ELFENNIR</h1>
+    <p>Genera un presupuesto profesional y guárdalo en PDF</p>
+  </header>
+
+  <div class="panel no-print">
+    <h2>Datos del presupuesto</h2>
+    <label>Nombre del cliente / negocio</label>
+    <input id="fClient" placeholder="Ej. Zahnarztpraxis Dr. Meier" oninput="render()" />
+    <div class="row">
+      <div>
+        <label>Servicio</label>
+        <select id="fService" onchange="onService()">
+          <option value="landing">Landing page (1 página)</option>
+          <option value="web">Web completa (3–5 secciones)</option>
+          <option value="galeria">Galería de eventos con QR</option>
+          <option value="seo">SEO mensual</option>
+          <option value="mant">Mantenimiento mensual</option>
+        </select>
+      </div>
+      <div>
+        <label>Precio (CHF)</label>
+        <input id="fPrice" type="number" min="0" value="400" oninput="render()" />
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>Idioma</label>
+        <select id="fLang" onchange="render()"><option value="es">Español</option><option value="de">Deutsch</option></select>
+      </div>
+      <div>
+        <label>Validez (días)</label>
+        <input id="fValid" type="number" min="1" value="14" oninput="render()" />
+      </div>
+    </div>
+    <label>Notas extra (opcional)</label>
+    <input id="fNotes" placeholder="Ej. incluye dominio el primer año" oninput="render()" />
+    <button class="btn btn-print" onclick="window.print()">🖨️ Guardar como PDF / Imprimir</button>
+  </div>
+
+  <div class="doc" id="doc"></div>
+</div>
+
+<script>
+const T = {
+  es:{
+    quote:"Presupuesto", date:"Fecha", valid:"Válido", days:"días", for:"Para", service:"Servicio",
+    includes:"Incluye", time:"Entrega", price:"Precio total", priceM:"Precio mensual",
+    terms:"Condiciones: primero te muestro una demo gratis. Solo pagas si te gusta el resultado. El pago se realiza al entregar y aprobar el trabajo.",
+    guarantee:"🛡️ Garantía sin riesgo: la demo es gratis. Solo pagas si te encanta.",
+    thanks:"Gracias por tu confianza — Yassin Fennir · ELFENNIR"
+  },
+  de:{
+    quote:"Angebot", date:"Datum", valid:"Gültig", days:"Tage", for:"Für", service:"Leistung",
+    includes:"Enthält", time:"Lieferung", price:"Gesamtpreis", priceM:"Monatspreis",
+    terms:"Konditionen: zuerst zeige ich Ihnen eine kostenlose Demo. Sie zahlen nur, wenn Ihnen das Ergebnis gefällt. Die Zahlung erfolgt nach Lieferung und Freigabe.",
+    guarantee:"🛡️ Risikofreie Garantie: die Demo ist kostenlos. Sie zahlen nur, wenn es Ihnen gefällt.",
+    thanks:"Danke für Ihr Vertrauen — Yassin Fennir · ELFENNIR"
+  }
+};
+const SERVICES = {
+  landing:{price:400,recurring:false,es:{name:"Landing page (1 página)",time:"3–5 días",scope:["Diseño moderno a medida","Optimizada para móvil","Formulario de contacto","Textos y SEO básico","Publicación con tu dominio"]},de:{name:"Landingpage (1 Seite)",time:"3–5 Tage",scope:["Modernes, individuelles Design","Für Mobilgeräte optimiert","Kontaktformular","Texte und Basis-SEO","Veröffentlichung mit Ihrer Domain"]}},
+  web:{price:900,recurring:false,es:{name:"Web completa (3–5 secciones)",time:"1–2 semanas",scope:["Varias secciones (inicio, servicios, sobre ti, contacto)","Galería de trabajos","Diseño premium y responsive","SEO básico y velocidad","Bilingüe si lo necesitas (ES/DE)"]},de:{name:"Webseite (3–5 Seiten)",time:"1–2 Wochen",scope:["Mehrere Seiten (Start, Leistungen, Über, Kontakt)","Arbeitsgalerie","Hochwertiges, responsives Design","Basis-SEO und Geschwindigkeit","Zweisprachig auf Wunsch (DE/ES)"]}},
+  galeria:{price:220,recurring:false,es:{name:"Galería de eventos con QR",time:"2–4 días",scope:["Galería compartida para el evento","Los invitados suben fotos y videos por QR","Diseño a juego con tu evento","Alojamiento seguro","Listo el día del evento"]},de:{name:"Event-Galerie mit QR",time:"2–4 Tage",scope:["Geteilte Galerie für das Event","Gäste laden Fotos & Videos per QR hoch","Passendes Design zum Event","Sicheres Hosting","Bereit am Eventtag"]}},
+  seo:{price:75,recurring:true,es:{name:"SEO mensual",time:"mensual",scope:["Optimización de palabras clave","Mejora de textos y estructura","Informe de posiciones","Ajustes continuos"]},de:{name:"SEO monatlich",time:"monatlich",scope:["Keyword-Optimierung","Verbesserung von Texten und Struktur","Ranking-Bericht","Laufende Anpassungen"]}},
+  mant:{price:45,recurring:true,es:{name:"Mantenimiento mensual",time:"mensual",scope:["Actualizaciones y copias de seguridad","Pequeños cambios de textos/fotos","Revisión de que todo funcione","Soporte por email"]},de:{name:"Wartung monatlich",time:"monatlich",scope:["Updates und Backups","Kleine Text-/Bildänderungen","Funktionsprüfung","E-Mail-Support"]}}
+};
+
+function onService(){ document.getElementById("fPrice").value = SERVICES[document.getElementById("fService").value].price; render(); }
+
+function fmtDate(lang){
+  const d=new Date();
+  return d.toLocaleDateString(lang==="de"?"de-CH":"es-ES",{day:"2-digit",month:"long",year:"numeric"});
+}
+function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+
+function render(){
+  const lang=document.getElementById("fLang").value, t=T[lang];
+  const skey=document.getElementById("fService").value, s=SERVICES[skey][lang], rec=SERVICES[skey].recurring;
+  const client=(document.getElementById("fClient").value||"").trim()||(lang==="de"?"[Kundenname]":"[Nombre del cliente]");
+  const price=parseInt(document.getElementById("fPrice").value||"0",10);
+  const valid=parseInt(document.getElementById("fValid").value||"14",10);
+  const notes=(document.getElementById("fNotes").value||"").trim();
+
+  document.getElementById("doc").innerHTML =
+    '<div class="d-head"><div class="brand">ELFENNIR<small>Yassin Fennir · elfennir.com · glodrakokick@gmail.com</small></div>'+
+    '<div class="d-meta">'+t.quote+'<br>'+t.date+': '+fmtDate(lang)+'<br>'+t.valid+': '+valid+' '+t.days+'</div></div>'+
+    '<h3>'+t.for+'</h3><div class="client">'+esc(client)+'</div>'+
+    '<h3>'+t.service+'</h3><div style="font-weight:600;font-size:16px">'+s.name+'</div>'+
+    '<h3>'+t.includes+'</h3><ul>'+s.scope.map(x=>'<li>'+esc(x)+'</li>').join('')+(notes?'<li>'+esc(notes)+'</li>':'')+'</ul>'+
+    '<h3>'+t.time+'</h3><div>'+s.time+'</div>'+
+    '<div class="price-box"><span class="p-label">'+(rec?t.priceM:t.price)+'</span><span class="p-val">CHF '+price+(rec?' / '+(lang==="de"?"Monat":"mes"):'')+'</span></div>'+
+    '<div class="terms">'+t.terms+'</div>'+
+    '<div class="guarantee">'+t.guarantee+'</div>'+
+    '<div class="foot">'+t.thanks+'</div>';
+}
+render();
+</script>
+</body>
+</html>

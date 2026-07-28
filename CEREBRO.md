@@ -42,8 +42,11 @@ Vive en GitHub, así que **nunca se pierde** y lo abres desde el iPhone o el PC.
 - **Kit de experto + Sistema diario** — creados y en el repo.
 - **Panel de Clientes (`panel-clientes.html`)** — app de un archivo que funciona
   OFFLINE en el móvil: genera mensajes de outreach (ES/DE), guarda a quién
-  escribiste y su estado (Enviado/Respondió/Cliente), con contador diario /10.
-  Verificado 6/6 en navegador.
+  escribiste y su estado (Enviado/Respondió/Cliente), contador diario /10 y
+  **seguimiento automático** (avisa a los 3 días sin respuesta). Verificado 9/9.
+- **Generador de Presupuestos (`presupuesto.html`)** — crea un presupuesto
+  profesional (ES/DE) con alcance, precio CHF y garantía, y lo guarda en PDF
+  (imprimir). Offline. Verificado 9/9 en navegador.
 
 ---
 
