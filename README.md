@@ -1,5 +1,7 @@
 # Web profesional — Yassin Fennir
 
+> **🎛️ Sistema de Control:** en [`sistema/CONTROL.md`](sistema/CONTROL.md) están las reglas, los tres frentes y el veredicto de 90 días; en [`sistema/INVENTARIO.md`](sistema/INVENTARIO.md), todo lo creado hasta ahora con enlaces. El tablero visual vive como artifact «Centro de Control» en claude.ai/code.
+
 Sitio web personal de **portafolio + servicios**, bilingüe **Español / Deutsch**.
 Sirve para dos objetivos:
 

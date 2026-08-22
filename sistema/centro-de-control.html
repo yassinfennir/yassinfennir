@@ -1,0 +1,386 @@
+<title>Centro de Control</title>
+<style>
+:root{
+  --ground:#F5F5F7;
+  --surface:#FFFFFF;
+  --surface-2:#FAFAFC;
+  --ink:#1D1D1F;
+  --mid:#515154;
+  --soft:#6E6E73;
+  --line:#D8D8DD;
+  --accent:#0071E3;
+  --accent-soft:#EAF3FD;
+  --ok:#1F8A3B;
+  --ok-soft:#E5F3E9;
+  --warn:#B25000;
+  --warn-soft:#FBEFE0;
+  --red:#D70015;
+  --red-soft:#FCE9EA;
+  --shadow:0 1px 2px rgba(29,29,31,.04),0 12px 32px -20px rgba(29,29,31,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#000000;
+    --surface:#1C1C1E;
+    --surface-2:#232326;
+    --ink:#F5F5F7;
+    --mid:#C7C7CC;
+    --soft:#98989D;
+    --line:#3A3A3C;
+    --accent:#0A84FF;
+    --accent-soft:#0E2540;
+    --ok:#30D158;
+    --ok-soft:#12301C;
+    --warn:#FFB340;
+    --warn-soft:#33240E;
+    --red:#FF453A;
+    --red-soft:#3A1512;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 14px 36px -22px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#000000;
+  --surface:#1C1C1E;
+  --surface-2:#232326;
+  --ink:#F5F5F7;
+  --mid:#C7C7CC;
+  --soft:#98989D;
+  --line:#3A3A3C;
+  --accent:#0A84FF;
+  --accent-soft:#0E2540;
+  --ok:#30D158;
+  --ok-soft:#12301C;
+  --warn:#FFB340;
+  --warn-soft:#33240E;
+  --red:#FF453A;
+  --red-soft:#3A1512;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 14px 36px -22px rgba(0,0,0,.9);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:860px;margin:0 auto;padding:52px 20px 90px;display:flex;flex-direction:column;gap:56px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+p{margin:0}
+
+/* ---------- masthead ---------- */
+header{display:flex;flex-direction:column;gap:10px}
+.date{font-size:.8rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--soft)}
+h1{font-size:clamp(2.3rem,7vw,3.2rem);font-weight:700;letter-spacing:-.03em;line-height:1.04;margin:0;text-wrap:balance}
+.thesis{font-size:1.2rem;color:var(--mid);max-width:34em}
+.thesis b{color:var(--ink);font-weight:600}
+
+/* ---------- sections ---------- */
+section{display:flex;flex-direction:column;gap:18px}
+h2{font-size:1.55rem;font-weight:700;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.sub{color:var(--soft);font-size:.98rem;max-width:44em;margin-top:-10px}
+
+/* ---------- focus card ---------- */
+.focus{
+  background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  box-shadow:var(--shadow);padding:30px 28px;display:flex;flex-direction:column;gap:12px;
+}
+.focus .k{font-size:.78rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--accent)}
+.focus .action{font-size:1.5rem;font-weight:700;letter-spacing:-.02em;line-height:1.25;text-wrap:balance}
+.focus .why{color:var(--mid);max-width:40em}
+.focus .src{font-size:.86rem;color:var(--soft)}
+
+/* ---------- checklist ---------- */
+.list{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.row{display:flex;gap:14px;align-items:baseline;padding:15px 22px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .when{flex:none;width:7.2em;font-size:.8rem;font-weight:600;color:var(--soft);font-variant-numeric:tabular-nums}
+.row .what{flex:1;min-width:14em}
+.row .what small{display:block;color:var(--soft);font-size:.85rem}
+@media (max-width:600px){
+  .row{flex-wrap:wrap;row-gap:4px}
+  .row .when{width:100%}
+  .row .what{min-width:0;flex-basis:100%}
+  .item{flex-wrap:wrap;row-gap:4px}
+  .item .name{min-width:0;flex-basis:100%}
+}
+.pill{flex:none;font-size:.74rem;font-weight:600;letter-spacing:.02em;padding:3px 10px;border-radius:99px;white-space:nowrap}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.red{background:var(--red-soft);color:var(--red)}
+.pill.info{background:var(--accent-soft);color:var(--accent)}
+.pill.dim{background:var(--surface-2);color:var(--soft);border:1px solid var(--line)}
+
+/* ---------- fronts ---------- */
+.fronts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:760px){.fronts{grid-template-columns:1fr}}
+.front{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:24px 22px;display:flex;flex-direction:column;gap:12px}
+.front .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.front h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;margin:0}
+.front .role{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.front .desc{color:var(--mid);font-size:.94rem}
+.front .next{border-top:1px solid var(--line);padding-top:12px;font-size:.94rem}
+.front .next b{display:block;font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin-bottom:4px}
+.front .links{font-size:.86rem;color:var(--soft)}
+
+/* ---------- inventory ---------- */
+.group{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.group>summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;
+  padding:18px 22px;font-weight:600;font-size:1.02rem;
+}
+.group>summary::-webkit-details-marker{display:none}
+.group>summary .n{margin-left:auto;font-variant-numeric:tabular-nums;font-size:.85rem;color:var(--soft);font-weight:600}
+.group>summary .chev{flex:none;color:var(--soft);transition:transform .18s ease;font-size:.8rem}
+.group[open]>summary .chev{transform:rotate(90deg)}
+.group[open]>summary{border-bottom:1px solid var(--line)}
+@media (prefers-reduced-motion: reduce){.group>summary .chev{transition:none}}
+.items{display:flex;flex-direction:column}
+.item{display:flex;gap:12px;align-items:baseline;padding:12px 22px;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item .name{flex:1;min-width:12em}
+.item .name small{display:block;color:var(--soft);font-size:.84rem}
+.item .go{flex:none;font-size:.86rem;font-weight:600}
+.hint{padding:12px 22px;font-size:.86rem;color:var(--soft);background:var(--surface-2)}
+
+/* ---------- rules ---------- */
+.rules{display:flex;flex-direction:column;gap:12px;counter-reset:regla}
+.rule{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;display:flex;gap:18px;align-items:flex-start;box-shadow:var(--shadow)}
+.rule::before{
+  counter-increment:regla;content:counter(regla);
+  flex:none;width:2rem;height:2rem;border-radius:50%;
+  background:var(--ink);color:var(--ground);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.95rem;font-variant-numeric:tabular-nums;
+}
+.rule .body{display:flex;flex-direction:column;gap:4px}
+.rule h3{margin:0;font-size:1.05rem;font-weight:700;letter-spacing:-.01em}
+.rule p{color:var(--mid);font-size:.95rem;max-width:52em}
+.rule p b{color:var(--ink)}
+
+/* ---------- verdict ---------- */
+.verdict{background:var(--surface);border:1.5px solid var(--accent);border-radius:20px;box-shadow:var(--shadow);padding:26px 26px;display:flex;flex-direction:column;gap:14px}
+.verdict .k{font-size:.78rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--accent)}
+.verdict h3{margin:0;font-size:1.3rem;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
+.verdict .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.verdict .cols{grid-template-columns:1fr}}
+.verdict .col{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.verdict .col b{font-size:.95rem}
+.verdict .col p{font-size:.9rem;color:var(--mid)}
+.verdict .foot{font-size:.9rem;color:var(--soft)}
+
+/* ---------- automation ---------- */
+.auto{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}
+.auto .row .what b{font-weight:600}
+
+/* ---------- numbers ---------- */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:640px){.nums{grid-template-columns:1fr}}
+.num{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow)}
+.num .q{font-size:.95rem;font-weight:600}
+.num .d{font-size:.86rem;color:var(--soft)}
+
+footer{border-top:1px solid var(--line);padding-top:22px;font-size:.88rem;color:var(--soft);display:flex;flex-direction:column;gap:6px}
+</style>
+
+<div class="wrap">
+
+  <header>
+    <p class="date">Yassin · Zúrich · actualizado 22 agosto 2026</p>
+    <h1>Centro de Control</h1>
+    <p class="thesis"><b>Un solo lugar. Una apuesta a la vez.</b> Todo lo que has creado está aquí abajo; lo que no empuja la apuesta activa es archivo, no pendiente.</p>
+  </header>
+
+  <!-- ================= AHORA ================= -->
+  <section>
+    <h2>La única cosa de negocio esta semana</h2>
+    <div class="focus">
+      <p class="k">Fennir · dinero rápido</p>
+      <p class="action">Enviar la carta a tus ~40 clientes existentes ofreciendo el piloto de agente.</p>
+      <p class="why">Ya te conocen, ya te pagaron, ya confían. Convertir el 10% en un piloto vale más que 90 días de contenido. El texto ya está escrito en tu Plan 90 días — solo hay que personalizarlo y enviarlo.</p>
+      <p class="src">Fuente: tu propio <a href="https://claude.ai/code/artifact/230bb7dd-51b0-4b64-a80b-831079088f0c">Plan 90 días</a>, sección «Dinero rápido».</p>
+    </div>
+
+    <h2 style="font-size:1.15rem;margin-top:8px">Además, esta semana</h2>
+    <div class="list">
+      <div class="row">
+        <span class="when">Sáb 23.8</span>
+        <span class="what">Llaves del piso a la oficina de Kauniainen <small>Las lleva tu padre · Joo Kodit envía recibo por email</small></span>
+        <span class="pill red">fecha límite</span>
+      </div>
+      <div class="row">
+        <span class="when">Hoy · 10 min</span>
+        <span class="what">Abrir el mensaje cifrado de Kela («Lue viesti») <small>Si conceden la ayuda, recuperas el alquiler de agosto</small></span>
+        <span class="pill warn">bloquea dinero</span>
+      </div>
+      <div class="row">
+        <span class="when">Esta semana</span>
+        <span class="what">Actualizar email y teléfono en webauto <small>5 minutos · desbloquea el examen de conducir con CAP</small></span>
+        <span class="pill warn">bloquea el carnet</span>
+      </div>
+      <div class="row">
+        <span class="when">Cada día</span>
+        <span class="what">Benedict-Schule: clase y repaso <small>El Lehrvertrag explicado fácil está en tu tarjeta de estudio</small></span>
+        <span class="pill info">base</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FRENTES ================= -->
+  <section>
+    <h2>Tus tres frentes</h2>
+    <p class="sub">Toda tu vida ahora mismo cabe en tres carriles. Cada uno tiene un estado y una sola próxima acción — nunca una lista larga.</p>
+    <div class="fronts">
+
+      <div class="front">
+        <div class="top"><h3>Ausbildung</h3><span class="pill ok">en marcha</span></div>
+        <p class="role">La base</p>
+        <p class="desc">Benedict-Schule, Zúrich. Empezaste el 17 de agosto. Es tu estabilidad: no se negocia, no compite con el negocio.</p>
+        <div class="next"><b>Próxima acción</b>Dominar el Lehrvertrag con tu <a href="https://claude.ai/code/artifact/884644b9-798f-4ce3-a78e-ed3ece7a0960">guía en fácil</a>.</div>
+        <p class="links"><a href="https://app.docstash.ai/ugiwkr">LernBox KV/QV</a></p>
+      </div>
+
+      <div class="front">
+        <div class="top"><h3>Fennir</h3><span class="pill info">apuesta activa</span></div>
+        <p class="role">Los ingresos</p>
+        <p class="desc">Webs + agentes IA para PYMEs suizas. ~50 proyectos entregados. La única apuesta de ingresos hasta su veredicto de 90 días.</p>
+        <div class="next"><b>Próxima acción</b>Carta a los 40 clientes (arriba). Después: Semana 0 del plan — portfolio real, titular de LinkedIn, un caso con cifras.</div>
+        <p class="links"><a href="https://claude.ai/code/artifact/230bb7dd-51b0-4b64-a80b-831079088f0c">Plan 90 días</a> · <a href="https://claude.ai/code/artifact/dfcf6923-bf60-4cdf-abc3-6c78188c1729">Landing</a> · <a href="https://fennir.ch">fennir.ch</a></p>
+      </div>
+
+      <div class="front">
+        <div class="top"><h3>Finlandia</h3><span class="pill warn">en cierre</span></div>
+        <p class="role">La salida</p>
+        <p class="desc">Deuda civil de 614 € (septiembre) + factura final de luz. Sin multas, sin nada penal. Plan de 30 €/mes ofrecido; falta que Tia-Maria confirme.</p>
+        <div class="next"><b>Próxima acción</b>Kela + llaves + webauto (lista de arriba). El contrato muere solo el 30.9.</div>
+        <p class="links"><a href="https://claude.ai/code/artifact/eb71d3ab-4580-4221-b7de-b893a5a5f9dd">Estado completo</a> · <a href="https://myropo.fi">saldo en myropo.fi</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= INVENTARIO ================= -->
+  <section>
+    <h2>Todo lo que has creado</h2>
+    <p class="sub">Inventario real a 22 de agosto, revisado servicio por servicio. Toca un grupo para abrirlo. Lo marcado como archivo no está perdido — está esperando a que Fennir tenga su veredicto.</p>
+
+    <details class="group" open>
+      <summary><span class="chev">▶</span>Webs de clientes · Vercel <span class="n">50 proyectos</span></summary>
+      <div class="items">
+        <div class="item"><span class="name">fahrschule-basel, hairloft-solothurn, treuhand-bern, elektro-thurgau, tierarzt-winterthur, optiker-zug, maler-zug, pizzeria-corallo, autogarage-zurich…<small>Y unos 20 estudios de uñas, peluquerías y clínicas por toda la Suiza alemana. Este es tu portafolio real y tu lista para la carta.</small></span><a class="go" href="https://vercel.com/entitys-projects-48efac7f">Abrir Vercel</a></div>
+        <div class="item"><span class="name">scherrer-storenbau + scherrer-system + scherrer-programm<small>Tu cliente más profundo: web y además sistema interno. Candidato nº 1 para el caso con cifras.</small></span><span class="pill ok">vivo</span></div>
+      </div>
+      <p class="hint">El listado de Vercel se corta en 50 — puede haber más. Fechas: julio–agosto 2026.</p>
+    </details>
+
+    <details class="group" open>
+      <summary><span class="chev">▶</span>Fennir · marca y planes <span class="n">4 piezas</span></summary>
+      <div class="items">
+        <div class="item"><span class="name">Landing Fennir <small>DE/EN/ES · «Ihre Firma arbeitet 42 Stunden. Ihre Agenten 168.»</small></span><a class="go" href="https://claude.ai/code/artifact/dfcf6923-bf60-4cdf-abc3-6c78188c1729">Abrir</a></div>
+        <div class="item"><span class="name">Plan 90 días <small>Contenido LinkedIn en alemán, 3 posts listos, carta a clientes</small></span><a class="go" href="https://claude.ai/code/artifact/230bb7dd-51b0-4b64-a80b-831079088f0c">Abrir</a></div>
+        <div class="item"><span class="name">02planfennir <small>Plan en Google Docs (hay un duplicado — borrar uno)</small></span><a class="go" href="https://docs.google.com/document/d/1pkUjaRGKHU3ABNErgrrRYg_U0yRGKvCC3Oxa9yduft0/edit">Abrir</a></div>
+        <div class="item"><span class="name">Versión anterior de la landing <small>Artifact del 21.8 · reemplazada por la actual</small></span><span class="pill dim">archivo</span></div>
+      </div>
+    </details>
+
+    <details class="group">
+      <summary><span class="chev">▶</span>Escuela y documentos vivos <span class="n">6 piezas</span></summary>
+      <div class="items">
+        <div class="item"><span class="name">Lehrvertrag en fácil <small>Tu guía de estudio, bloque a bloque</small></span><a class="go" href="https://claude.ai/code/artifact/884644b9-798f-4ce3-a78e-ed3ece7a0960">Abrir</a></div>
+        <div class="item"><span class="name">LernBox · Kollaboration KV/QV <small>DocStash · 20.8</small></span><a class="go" href="https://app.docstash.ai/ugiwkr">Abrir</a></div>
+        <div class="item"><span class="name">Teamwork Präsentation + guion EN <small>Google Slides + Doc · 19.8</small></span><a class="go" href="https://docs.google.com/presentation/d/1E_XmPcE8t-7d9dGAcSlB51i4wqxY5fG4l-NfBwQGOqg/edit">Abrir</a></div>
+        <div class="item"><span class="name">Salida de Finlandia <small>Estado completo: deudas, plan de pago, qué falta</small></span><a class="go" href="https://claude.ai/code/artifact/eb71d3ab-4580-4221-b7de-b893a5a5f9dd">Abrir</a></div>
+        <div class="item"><span class="name">Yassins Miete in Finnland <small>Versión en alemán para compartir</small></span><a class="go" href="https://claude.ai/code/artifact/0626254a-c770-4e70-a070-d78693cb0045">Abrir</a></div>
+        <div class="item"><span class="name">BENEDICT Deutsch · THS 1a BT <small>Páginas de clase en Notion</small></span><a class="go" href="https://app.notion.com/p/39f7997e570e80f5ac56dba1404fea75">Abrir</a></div>
+      </div>
+    </details>
+
+    <details class="group">
+      <summary><span class="chev">▶</span>Web personal · GitHub <span class="n">1 repo</span></summary>
+      <div class="items">
+        <div class="item"><span class="name">Portafolio + CV bilingüe ES/DE <small>index.html + cv.html · para Bewerbungen y clientes · aún sin publicar en GitHub Pages</small></span><a class="go" href="https://github.com/yassinfennir/yassinfennir">Abrir repo</a></div>
+      </div>
+    </details>
+
+    <details class="group">
+      <summary><span class="chev">▶</span>Archivo · apuestas anteriores <span class="n">4 proyectos</span></summary>
+      <div class="items">
+        <div class="item"><span class="name">Glodrako · streaming en Kick <small>HQ completo en Notion: contenido, sponsors, stream log · abril 2026</small></span><span class="pill dim">archivo</span></div>
+        <div class="item"><span class="name">RideApp Africa <small>Supabase · pausado desde marzo</small></span><span class="pill dim">archivo</span></div>
+        <div class="item"><span class="name">svenia-quinceanera <small>Supabase · pausado desde julio</small></span><span class="pill dim">archivo</span></div>
+        <div class="item"><span class="name">HQs viejos de Notion <small>YASSIN HQ, YASSIN OS, CEREBRO MAESTRO, EMPIRE Dashboard, Reglas de vida · abril–junio</small></span><a class="go" href="https://app.notion.com/p/3367997e570e8142bf53e13ffb9806e5">Ver</a></div>
+      </div>
+      <p class="hint">También existen: cuenta Stripe en modo test («Elfennir sandbox»), 2 boards vacíos en Miro, Airtable y Canva vacíos, Zapier sin conexiones. Nada pendiente ahí.</p>
+    </details>
+  </section>
+
+  <!-- ================= REGLAS ================= -->
+  <section>
+    <h2>Las reglas del sistema</h2>
+    <p class="sub">Cinco reglas. Son las que responden a tu pregunta: «¿mejoro esto o me salgo y busco otra cosa?»</p>
+    <div class="rules">
+      <div class="rule"><div class="body">
+        <h3>Una sola apuesta de ingresos</h3>
+        <p>Hoy es <b>Fennir</b>. Glodrako, RideApp y cualquier idea nueva quedan en archivo hasta el veredicto. No porque sean malas — porque saltar de apuesta antes del veredicto es exactamente lo que las mató a ellas.</p>
+      </div></div>
+      <div class="rule"><div class="body">
+        <h3>Todo entra por la bandeja, nada interrumpe</h3>
+        <p>Idea nueva, empresa nueva, oportunidad nueva → se apunta con fecha en la bandeja del archivo. Se mira <b>solo</b> el día del veredicto. Apuntarla cuesta 10 segundos; perseguirla cuesta la apuesta activa.</p>
+      </div></div>
+      <div class="rule"><div class="body">
+        <h3>Tres números cada domingo</h3>
+        <p><b>Respuestas</b> de clientes esta semana · <b>CHF</b> cobrados o comprometidos · <b>posts</b> publicados (0–3). Tres números, dos minutos. Si no los apuntas, la semana no cuenta como ejecutada.</p>
+      </div></div>
+      <div class="rule"><div class="body">
+        <h3>Salir solo con el plan ejecutado</h3>
+        <p>«Buscar otras empresas» está permitido en dos casos: el plan de 90 días se ejecutó entero y el veredicto salió rojo, o alguien te paga por adelantado por otra cosa. En cualquier otro caso es huida, no estrategia.</p>
+      </div></div>
+      <div class="rule"><div class="body">
+        <h3>Un solo centro de control</h3>
+        <p>Este. Los HQ de Notion pasan a archivo histórico — no se actualizan más. Si este tablero y la realidad no coinciden, se corrige el tablero, no se abre uno nuevo.</p>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- ================= VEREDICTO ================= -->
+  <section>
+    <div class="verdict">
+      <p class="k">El veredicto · 20 de noviembre 2026</p>
+      <h3>90 días después de empezar el plan, Fennir se juzga con dos números.</h3>
+      <div class="cols">
+        <div class="col"><b>Se mejora y se dobla la apuesta si…</b><p>Hay al menos <b>1 piloto de agente pagado</b> o <b>10 conversaciones reales</b> con clientes sobre un agente. Entonces Fennir funciona: más casos, subir precios, repetir el ciclo.</p></div>
+        <div class="col"><b>Se sale y se busca otra cosa si…</b><p>Carta enviada a los ~40, 12 semanas de contenido publicadas, y aún así <b>cero pilotos y menos de 10 conversaciones</b>. Entonces se abre la bandeja del archivo y se elige la siguiente apuesta — sin culpa, con datos.</p></div>
+      </div>
+      <p class="foot">Condición para que el veredicto valga: la carta enviada y ≥30 de los 36 posts publicados. Un plan a medio ejecutar no produce veredicto, produce excusa.</p>
+    </div>
+  </section>
+
+  <!-- ================= AUTOMATIZACIÓN ================= -->
+  <section>
+    <h2>Lo que trabaja solo</h2>
+    <p class="sub">Tu petición era automatizar. Esto es lo que ya corre sin ti, y cómo añadir más.</p>
+    <div class="auto list">
+      <div class="row">
+        <span class="when">Lunes 07:00</span>
+        <span class="what"><b>Revisión semanal automática</b><small>Claude revisa este tablero, actualiza estados y te propone el foco de la semana. Te llega notificación al terminar.</small></span>
+        <span class="pill ok">activa</span>
+      </div>
+      <div class="row">
+        <span class="when">Cuando quieras</span>
+        <span class="what"><b>«Actualiza el centro de control»</b><small>Dilo en cualquier chat de Claude Code y este tablero se pone al día con lo último.</small></span>
+        <span class="pill info">a demanda</span>
+      </div>
+      <div class="row">
+        <span class="when">Siguientes</span>
+        <span class="what"><b>Candidatas a automatizar</b><small>Recordatorio del pago de 30 € (día 30 de cada mes) · borrador de los 3 posts de la semana según el plan · aviso si Tia-Maria responde. Pide la que quieras.</small></span>
+        <span class="pill dim">disponibles</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Fuente de verdad: carpeta <a href="https://github.com/yassinfennir/yassinfennir">sistema/</a> del repo de GitHub · Este tablero se regenera desde ahí.</p>
+    <p>Datos verificados el 22.8.2026 contra: repo GitHub, 6 artifacts, Notion, Vercel, Supabase, Google Drive, DocStash, Miro, Stripe, Airtable, Canva y Zapier.</p>
+  </footer>
+
+</div>
