@@ -2,6 +2,9 @@
 # fix-atajos.sh — arregla los atajos de teclado del PC de Yassin.
 #
 # Detecta solo dónde está corriendo y aplica el fix que toca:
+#   - Omarchy / Hyprland: Alt+F4 cierra ventana y Alt+Tab lista todas las ventanas
+#     abiertas (con backup del bindings.conf). Super+K ya lo usa Omarchy para
+#     mostrar todos los atajos — no se toca.
 #   - GNOME nativo (Ubuntu, Fedora...): configura Super+K y restaura Alt+F4 vía gsettings.
 #   - WSL2 bajo Windows: instala el script de AutoHotkey en el arranque de Windows
 #     para que Win+K abra la terminal (Windows captura la tecla Win antes que Linux;
@@ -147,6 +150,57 @@ fix_wsl() {
   azul "Ahí usa Ctrl o Alt; eso no es un fallo, es cómo funcionan las terminales."
 }
 
+# ------------------------------------------------------- Omarchy / Hyprland
+fix_hyprland() {
+  local conf="$HOME/.config/hypr/bindings.conf"
+  local marca="# --- fix-atajos ---"
+
+  if [[ $RESTAURAR -eq 1 ]]; then
+    local ultimo
+    ultimo=$(ls -t "$HOME"/.atajos-backup-*-bindings.conf 2>/dev/null | head -1 || true)
+    if [[ -z "$ultimo" ]]; then rojo "No hay ningún backup que restaurar."; exit 1; fi
+    cp "$ultimo" "$conf"
+    hyprctl reload >/dev/null 2>&1 || true
+    verde "Restaurado $conf desde $ultimo."
+    exit 0
+  fi
+
+  azul "Hyprland/Omarchy detectado."
+  if [[ ! -f "$conf" ]]; then
+    rojo "No encuentro $conf — ¿Omarchy muy nuevo (bindings.lua)? No toco nada."
+    echo "Añade tus atajos donde diga el visor de Super+K y cuéntamelo para adaptar el script."
+    exit 1
+  fi
+  if grep -qF "$marca" "$conf"; then
+    verde "El fix ya estaba aplicado en $conf. Nada que hacer."
+  else
+    local backup="$HOME/.atajos-backup-$(date +%Y%m%d-%H%M%S)-bindings.conf"
+    cp "$conf" "$backup"
+    azul "Backup guardado en $backup"
+    {
+      echo ""
+      echo "$marca"
+      echo "# Alt+F4 cierra la ventana actual (ademas del Super+W de Omarchy)"
+      echo "bind = ALT, F4, killactive"
+      if command -v walker >/dev/null 2>&1 && command -v elephant-windows >/dev/null 2>&1; then
+        echo "# Alt+Tab: lista de TODAS las ventanas abiertas; escribe para filtrar, Enter salta"
+        echo "bind = ALT, Tab, exec, walker -m windows"
+      else
+        echo "# Alt+Tab: rota entre las ventanas del workspace actual"
+        echo "bind = ALT, Tab, cyclenext"
+        echo "bind = ALT, Tab, bringactivetotop"
+      fi
+      echo "$marca fin"
+    } >> "$conf"
+    hyprctl reload >/dev/null 2>&1 || true
+    verde "Listo. Alt+F4 cierra ventana y Alt+Tab te enseña/rota lo abierto. Sin reiniciar."
+  fi
+  echo
+  azul "Chuleta Omarchy: Super+K = TODOS los atajos | Super+W = cerrar | Super+Space = lanzar apps"
+  azul "Super+Tab / Super+Shift+Tab = siguiente/anterior workspace | Super+flechas = mover el foco"
+  azul "Para deshacer este fix: ./fix-atajos.sh --restaurar"
+}
+
 # ---------------------------------------------------------------------- Otros
 fix_otro() {
   rojo "No he detectado ni GNOME ni WSL2 (escritorio: ${XDG_CURRENT_DESKTOP:-desconocido})."
@@ -164,8 +218,14 @@ es_gnome() {
     && gsettings list-schemas 2>/dev/null | grep -q '^org.gnome.desktop.wm.keybindings$'
 }
 
+es_hyprland() {
+  [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]] || command -v hyprctl >/dev/null 2>&1
+}
+
 if es_wsl; then
   fix_wsl
+elif es_hyprland; then
+  fix_hyprland
 elif es_gnome; then
   fix_gnome
 else

@@ -11,6 +11,7 @@ El script detecta solo dónde está y hace lo que toca:
 
 | Tu caso | Qué hace |
 |---|---|
+| **Omarchy / Hyprland** | **Alt+F4** cierra ventana y **Alt+Tab** enseña/rota las ventanas abiertas (backup de `bindings.conf` antes de tocar nada). Ojo: **Super+K ya lo usa Omarchy** para mostrar todos sus atajos. |
 | **Ubuntu/GNOME nativo** | Restaura **Alt+F4** para cerrar ventanas y crea **Super+K** (abre terminal). Backup automático antes de tocar nada. |
 | **WSL2 bajo Windows** | Copia `atajos.ahk` al arranque de Windows para que **Win+K** funcione (Windows captura la tecla Win; no se puede arreglar desde Linux). Necesita [AutoHotkey v2](https://www.autohotkey.com), gratis. |
 | **KDE/XFCE/otro** | No toca nada; te dice el menú exacto donde configurarlo. |
