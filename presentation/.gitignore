@@ -9,3 +9,6 @@ generate5.js
 __pycache__/
 chk-*.jpg
 hi-*.jpg
+ft-*.jpg
+fairtech-slides.json
+fairtech-original.html
