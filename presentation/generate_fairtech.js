@@ -341,6 +341,45 @@ handover(4, "Samed", "Shopify und Abwicklung", "1–2 MINUTEN");
   ], 2.3, 1.1);
 })();
 
+// 19b Screenshots
+(() => {
+  const s = slide(4);
+  s.addImage({ path: "shopify-logo.png", x: 0.55, y: 0.78, w: 1.75, h: 0.55 });
+  s.addText("— live und echt", {
+    x: 2.45, y: 0.78, w: 9, h: 0.55, margin: 0, fontSize: 26, bold: true, color: INK, fontFace: F, valign: "middle",
+  });
+  s.addText("09 · SO SIEHT ES AUS", {
+    x: 0.55, y: 0.45, w: 9, h: 0.3, margin: 0, fontSize: 10.5, bold: true, color: ACC[4], charSpacing: 3, fontFace: F, valign: "middle",
+  });
+  const iw = 5.95, ih = 3.53, iy = 1.85;
+  s.addImage({ path: "shot-home.jpg", x: 0.55, y: iy, w: iw, h: ih });
+  s.addImage({ path: "shot-preise.jpg", x: 6.83, y: iy, w: iw, h: ih });
+  s.addText("SHOPIFY.COM — EIN KLICK AUF «START FOR FREE»", {
+    x: 0.55, y: iy + ih + 0.12, w: iw, h: 0.3, margin: 0, fontSize: 8.5, bold: true, color: DIM, charSpacing: 1.5, fontFace: F,
+  });
+  s.addText("3 TAGE GRATIS TESTEN — DANN $1/MONAT FÜR 3 MONATE", {
+    x: 6.83, y: iy + ih + 0.12, w: iw, h: 0.3, margin: 0, fontSize: 8.5, bold: true, color: DIM, charSpacing: 1.5, fontFace: F,
+  });
+  s.addText("Echte Screenshots von shopify.com · aufgenommen am 24.08.2026", {
+    x: 0.55, y: 6.15, w: 11.5, h: 0.3, margin: 0, fontSize: 9.5, color: DIM, fontFace: F,
+  });
+})();
+
+// 19c Entrepreneur
+(() => {
+  const s = slide(4);
+  head(s, 4, "10 · Selber starten", "Werde Entrepreneur — heute noch");
+  flow(s, 4, [
+    ["shopify.com öffnen", "«Kostenlos starten» klicken — 3 Tage gratis, dann $1/Monat"],
+    ["Produkt anlegen", "Foto, Text, Preis — 15 Minuten Arbeit"],
+    ["Link teilen", "Instagram, TikTok, Klassenchat — die ersten Besucher"],
+  ], 2.3, 2.0);
+  s.addText([
+    { text: "Jede Weltmarke auf Shopify hat genau so angefangen: ", options: { bold: true, color: INK } },
+    { text: "mit einem leeren Shop und einer Idee. Kein Code, kein Startkapital — nur anfangen.", options: { color: SOFT } },
+  ], { x: 0.55, y: 4.85, w: 11.8, h: 0.9, margin: 0, fontSize: 14.5, fontFace: F, lineSpacingMultiple: 1.25 });
+})();
+
 // 20 RESERVE 5 Schritte
 (() => {
   const s = slide(4, true);
