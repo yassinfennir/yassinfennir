@@ -242,26 +242,6 @@ handover(2, "Rayaan", "Markt, Kundschaft, Konkurrenz", "1–2 MINUTEN");
   lede(s, "Fast jeder hat ein Smartphone, gewechselt wird alle drei bis vier Jahre. Von diesem Kuchen brauchen wir Krümel.", 4.75);
 })();
 
-// 10 Quote
-(() => {
-  const s = slide(2);
-  s.addText("04 · DIE KUNDSCHAFT", {
-    x: 0.55, y: 0.45, w: 9, h: 0.3, margin: 0, fontSize: 10.5, bold: true, color: ACC[2], charSpacing: 3, fontFace: F,
-  });
-  s.addText([
-    { text: "Wir behaupten nicht, dass wir günstiger sind. ", options: { color: INK } },
-    { text: "Wir haben es verglichen", options: { color: ACC[2] } },
-    { text: " — mit Screenshot und Datum.", options: { color: INK } },
-  ], {
-    x: 1.17, y: 2.2, w: 11, h: 2.6, margin: 0, fontSize: 34, bold: true, fontFace: F,
-    align: "center", valign: "middle", lineSpacingMultiple: 1.2,
-  });
-  s.addText("MEDIAMARKT · DIGITEC GALAXUS · INTERDISCOUNT", {
-    x: 1.17, y: 5.15, w: 11, h: 0.35, margin: 0, align: "center",
-    fontSize: 10.5, bold: true, color: DIM, charSpacing: 3, fontFace: F,
-  });
-})();
-
 // 11 RESERVE Nadia
 (() => {
   const s = slide(2, true);
