@@ -6,3 +6,4 @@ hi-*.jpg
 *.pdf.tmp
 x5-*.jpg
 generate5.js
+__pycache__/
