@@ -1,10 +1,10 @@
 # 🎤 Redeskript FAIRTECH SCHWEIZ — synchron zur Präsentation
 
 **Team:** Yassin (Teil 1) · Rayaan (Teil 2) · Fernando (Teil 3) · Samed (Teil 4) · Kim (Teil 5)
-**Dauer:** ca. 10 Min im Modus «kurz» (17 Folien). Die Folien mit 🔒 RESERVE erscheinen nur mit Taste **K** — das sind eure vorbereiteten Antworten auf Nachfragen.
-**Steuerung in der Präsentation:** → weiter · ← zurück · **N** = Notizen (euer Text!) · **T** = Stoppuhr · **K** = alle Folien
+**Dauer:** ca. 10 Min im Modus «kurz» (17 Folien). Die Folien mit 🔒 RESERVE erscheinen nur mit Taste **K** — eure vorbereiteten Antworten auf Nachfragen.
+**Steuerung:** → / Wischen = weiter · ← zurück · **N** = Notizen (euer Text!) · **T** = Stoppuhr · **K** = alle Folien · **F** = Vollbild
 
-> 💬 **Nachricht für Teams:** Hallo zusammen! Hier ist ALLES für Fairtech: unten steht für jeden von euch der exakte Text zu jeder Folie — derselbe Text steht auch in der Präsentation selbst (Taste N). Lernt nur euren Teil. Präsentation öffnen, N drücken, mitlesen, üben. 🚀
+> 💬 **Nachricht für Teams:** Hallo zusammen! Hier ist ALLES für Fairtech: unten steht für jeden der exakte Text zu jeder Folie — derselbe Text steht in der Präsentation selbst (Taste N). Lernt nur euren Teil. Präsentation öffnen, N drücken, mitlesen, üben — geht auch am Handy (wischen!). 🚀
 ---
 
 
@@ -26,7 +26,7 @@ Yassin, dein Text: «Elektronik ist in der Schweiz teuer. Wer ein iPhone kauft, 
 Die Zahlen laufen hoch — warten, bis sie stehen. Yassin: «Ein Beispiel, das jeder kennt: das iPhone 16, 128 Gigabyte. Im Laden: 849 Franken. Bei uns: 799. Fünfzig Franken Unterschied — gleiche Ware, gleiche Garantie, gleiche Originalverpackung.» WICHTIG: Am Abend vorher den aktuellen Ladenpreis prüfen und die Zahl anpassen — wenn die Lehrperson nachschaut, muss sie stimmen.
 
 **Folie 5 — Weniger drumherum, mehr Gerät**
-Yassin: «Unsere Idee hat drei Teile. Erstens: kein Laden — wir verkaufen nur online, die zehn bis fünfzehn Prozent Struktur fallen weg. Zweitens: sechs Produkte statt sechstausend — kein totes Lager, keine Liquidationen. Drittens, und das ist der wichtigste Teil: refurbished. Geprüfte, wieder aufbereitete Geräte — da sind wir nicht fünf Prozent günstiger, sondern vierzig.» Die drei Karten je fünf Sekunden.
+Yassin: «Unsere Idee hat drei Teile. Erstens: kein Laden — wir verkaufen nur online, die zehn bis fünfzehn Prozent Struktur fallen weg. Zweitens: sechs Produkte statt sechstausend — kein totes Lager, keine Liquidationen. Drittens, und das ist der wichtigste Teil: refurbished. Geprüfte, wieder aufbereitete Geräte — da sind wir nicht fünf Prozent günstiger, sondern vierzig.» Die drei Karten je fünf Sekunden. Im Kurzmodus ist das deine LETZTE Folie — übergeben: «Wer das kauft und gegen wen wir antreten, zeigt euch Rayaan.»
 
 **🔒 RESERVE — Streckengeschäft: verkaufen ohne Lager**
 Theorie-Folie — hier hört die Lehrperson die Fachbegriffe. Yassin: «Wie machen wir das ohne eigenes Lager? Mit einem Streckengeschäft: der Kunde bestellt bei uns, wir bestellen beim Schweizer Grossisten, und der Grossist liefert direkt an den Kunden. Wir binden kein Kapital in teuren Geräten. Nur die refurbished-Geräte kaufen wir selber ein — dort lohnt es sich.» Das Wort STRECKENGESCHÄFT betonen. Dann übergeben: «Ob dieser Markt gross genug ist, zeigt euch Rayaan.»
@@ -47,7 +47,7 @@ UNSERE BESTE FOLIE — aber nur, wenn ihr es wirklich macht: vergleicht die Prei
 Die Persona. Rayaan: «Unsere Kundin heisst Nadia, 19, gerade mit der Lehre fertig. Ihr Laptop stirbt vor der Berufsmatur. Sie hat 500 Franken — nicht 1'300. Im Laden bekommt sie dafür ein Plastik-Notebook. Bei uns: ein Business-Gerät, refurbished, geprüft, mit Garantie — und es bleibt Geld übrig.» Konkret schlägt allgemein, immer.
 
 **Folie 8 — Gegen wen wir antreten**
-Konkurrenz — WICHTIG: Digitec Galaxus zuerst nennen, nicht MediaMarkt. Rayaan: «Der echte Gegner online in der Schweiz heisst nicht MediaMarkt — er heisst Digitec Galaxus. Riesiges Sortiment, super Logistik. Gegen die gewinnen wir bei Neuware nicht. Müssen wir auch nicht: unser Feld ist refurbished mit Beratung und schmalem Sortiment. Und unsere Schwäche sagen wir gleich selber: uns kennt noch niemand.»
+Konkurrenz — WICHTIG: Digitec Galaxus zuerst nennen, nicht MediaMarkt. Rayaan: «Der echte Gegner online in der Schweiz heisst nicht MediaMarkt — er heisst Digitec Galaxus. Riesiges Sortiment, super Logistik. Gegen die gewinnen wir bei Neuware nicht. Müssen wir auch nicht: unser Feld ist refurbished mit Beratung und schmalem Sortiment. Und unsere Schwäche sagen wir gleich selber: uns kennt noch niemand.» Im Kurzmodus ist das deine LETZTE Folie — übergeben: «Was genau im Regal liegt, zeigt euch Fernando.»
 
 **🔒 RESERVE — «Wie könnt ihr billiger sein als MediaMarkt?»**
 RESERVE — diese Folie ist NICHT im kurzen Durchlauf. Sie ist eure vorbereitete Antwort, falls die MediaMarkt-Frage kommt: Taste K drücken, eine Folie zurück — und die Antwort steht an der Wand. Rayaan: «Und jetzt die Frage, die Sie sich seit fünf Minuten stellen: Wie können ein paar Lernende billiger sein als MediaMarkt, wenn MediaMarkt hunderttausend Geräte einkauft und wir zehn? Ehrliche Antwort: beim Einkauf können wir es nicht. Unser Vorteil liegt woanders — erstens: keine Läden, keine Miete, kein Verkaufspersonal. Zweitens: sechs Produkte, kein totes Lager. Drittens: refurbished, wo nicht der Einkauf entscheidet, sondern Prüfung und Vertrauen.» Pause. «Beim Einkauf verlieren wir. Bei der Struktur gewinnen wir.» Dann übergeben: «Was genau im Regal liegt, zeigt euch Fernando.»
@@ -80,7 +80,7 @@ Samed, dein Text: «Warum Shopify? Erstens: die Zahlung ist gelöst — TWINT un
 Die Tutorial-Folie — Schritt für Schritt, wie in einem Anleitung-Video. Samed: «Das kann jeder hier nachmachen. Schritt eins: Konto auf shopify.com — drei Tage gratis, dann ein Franken im Monat. Schritt zwei: die sechs Produkte anlegen, mit Foto und Preis. Schritt drei: TWINT und Karte einschalten. Schritt vier: den Versand einrichten — dazu gleich mehr. Schritt fünf: Testbestellung machen, Screenshot als Beweis. Fünf Schritte — ein Wochenende.» Auf jeden Schritt einzeln zeigen.
 
 **Folie 14 — Von der Bestellung bis zur Tür**
-Der Ablauf einer Bestellung — fünf Schritte, je zehn Sekunden. Samed: «Nadia bestellt am Sonntagabend das refurbished-Notebook. TWINT bestätigt in Sekunden. Bei Neuware geht die Bestellung automatisch an den Grossisten — Streckengeschäft, wie Yassin gesagt hat — und der liefert direkt zu ihr. Die refurbished-Geräte verschicken wir selber: versichert, mit der Post, in zwei bis drei Tagen. Rechnung mit MWST kommt per Mail.» Betone: bei 800-Franken-Geräten ist der Versand IMMER versichert.
+Der Ablauf einer Bestellung — fünf Schritte, je zehn Sekunden. Samed: «Nadia bestellt am Sonntagabend das refurbished-Notebook. TWINT bestätigt in Sekunden. Bei Neuware geht die Bestellung automatisch an den Grossisten — Streckengeschäft, wie Yassin gesagt hat — und der liefert direkt zu ihr. Die refurbished-Geräte verschicken wir selber: versichert, mit der Post, in zwei bis drei Tagen. Rechnung mit MWST kommt per Mail.» Betone: bei 800-Franken-Geräten ist der Versand IMMER versichert. Im Kurzmodus ist das deine LETZTE Folie — übergeben: «Was das Gesetz verlangt und was am Ende übrig bleibt, zeigt euch Kim.»
 
 **🔒 RESERVE — Bezahlen — und eine bewusste Lücke**
 Samed: «Bezahlt wird mit TWINT — ohne TWINT verliert man in der Schweiz Bestellungen — oder mit Karte. Und eine bewusste Entscheidung: Kauf auf Rechnung gibt es bei uns NICHT. Bei 800-Franken-Geräten ist das Betrugsrisiko zu gross — das ist eine Risikoentscheidung, keine Bequemlichkeit.» Das zeigt der Lehrperson kaufmännisches Denken. Dann übergeben: «Was das Gesetz von uns verlangt und was am Ende übrig bleibt, zeigt euch Kim.»
@@ -109,8 +109,7 @@ ALLE FÜNF kommen nach vorne. Kim sagt «Danke.» — dann Stille, Hände ruhig,
 
 ---
 ## ✅ Regeln fürs Team
-1. **Nur den eigenen Teil lernen** — fett gedruckt in der Präsi steht alles Wichtige.
-2. **Übergaben üben:** Blickkontakt, Name sagen, ein Schritt zur Seite.
-3. **Am Abend vorher:** die Vergleichspreise (iPhone 849 usw.) aktuell prüfen und Screenshots ausdrucken — das ist euer stärkster Moment.
-4. **Zahlen = «Annahme» sagen**, nie «Ergebnis». Ehrlichkeit gibt die Bestnote.
-5. **Fragen-Plan:** MediaMarkt-Frage → Rayaan (Taste K, Reserve-Folie!) · Preiskrieg → Kim · Ware woher → Yassin · Schon verkauft? → «Nein, alles Annahmen — haben wir auch so gesagt.»
+1. **Nur den eigenen Teil lernen** — und die eigene Übergabe («…zeigt euch Rayaan») auswendig.
+2. **Am Abend vorher:** Vergleichspreise aktuell prüfen und Screenshots ausdrucken — euer stärkster Moment.
+3. **Zahlen = «Annahme» sagen**, nie «Ergebnis».
+4. **Fragen-Plan:** MediaMarkt-Frage → Rayaan (Taste K → Reserve-Folie!) · Preiskrieg → Kim · Ware woher → Yassin · Schon verkauft? → «Nein, alles Annahmen — haben wir so gesagt.»
