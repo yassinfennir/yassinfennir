@@ -7,12 +7,9 @@ for f in sorted(glob.glob("hi-*.jpg")):
         imgs.append("data:image/jpeg;base64," + base64.b64encode(fh.read()).decode())
 
 # slide -> presenter
-speakers = ["Person 1","Person 1","Person 1","Person 2","Person 2","Person 3",
-            "Person 4","Person 4","Person 4","Person 5","Person 5","Person 5"]
-titles = ["Titel","Ablauf & Team","Was ist E-Commerce?","Was ist Shopify?",
-          "In 5 Schritten zum Shop","Was kostet Shopify?","Digitale Produkte",
-          "So verkauft man digital","Rechenbeispiel","Vorteile & Nachteile",
-          "Fazit","Danke & Fragen"]
+speakers = ["Yassin","Rayan","Rayan","Hovadik","Kim","Kim","Bruno","Bruno"]
+titles = ["Titel","Was ist Shopify?","In 5 Schritten zum Shop","Was kostet Shopify?",
+          "So verkauft man digital","Rechenbeispiel","Fazit","Danke & Fragen"]
 
 html = r"""<title>Shopify Gruppenarbeit</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -111,7 +108,7 @@ html = r"""<title>Shopify Gruppenarbeit</title>
 <header>
   <div class="mark">S</div>
   <h1>Shopify <span>· Gruppenarbeit E-Commerce</span></h1>
-  <div class="chip">12 FOLIEN · 5 SPRECHER · ~18 MIN</div>
+  <div class="chip">8 FOLIEN · 5 SPRECHER · 5 MIN</div>
 </header>
 
 <main>

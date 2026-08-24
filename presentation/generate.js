@@ -100,7 +100,7 @@ function leadDesc(s, x, y, w, h, lead, desc, leadSize = 14, descSize = 11.5) {
     x: 2.67, y: 4.35, w: 8, h: 0.95, margin: 0, align: "center",
     fontSize: 17, color: SOFT, fontFace: FONT, lineSpacingMultiple: 1.25,
   });
-  s.addText("Yassin  ·  Name 2  ·  Name 3  ·  Name 4  ·  Name 5", {
+  s.addText("Yassin  ·  Rayan  ·  Hovadik  ·  Kim  ·  Bruno", {
     x: 2.17, y: 6.15, w: 9, h: 0.35, margin: 0, align: "center",
     fontSize: 12, color: MUTED, fontFace: FONT,
   });
@@ -122,11 +122,11 @@ function leadDesc(s, x, y, w, h, lead, desc, leadSize = 14, descSize = 11.5) {
     x: 0.55, y: 1.42, w: 10, h: 0.3, margin: 0, fontSize: 12.5, color: MUTED, fontFace: FONT,
   });
   const rows = [
-    ["1", "Einstieg: E-Commerce heute", "Person 1", "Folien 1–3", "3 Min"],
-    ["2", "Was ist Shopify & Shop bauen in 5 Schritten", "Person 2", "Folien 4–5", "4 Min"],
-    ["3", "Kosten & Gebühren", "Person 3", "Folie 6", "3 Min"],
-    ["4", "Digitale Produkte verkaufen & Geld verdienen", "Person 4", "Folien 7–9", "4,5 Min"],
-    ["5", "Vorteile, Nachteile & Fazit", "Person 5", "Folien 10–12", "3,5 Min"],
+    ["1", "Einstieg: E-Commerce heute", "Yassin", "Folien 1–3", "3 Min"],
+    ["2", "Was ist Shopify & Shop bauen in 5 Schritten", "Rayan", "Folien 4–5", "4 Min"],
+    ["3", "Kosten & Gebühren", "Hovadik", "Folie 6", "3 Min"],
+    ["4", "Digitale Produkte verkaufen & Geld verdienen", "Kim", "Folien 7–9", "4,5 Min"],
+    ["5", "Vorteile, Nachteile & Fazit", "Bruno", "Folien 10–12", "3,5 Min"],
   ];
   let y = 1.9;
   for (const [n, title, who, slides, min] of rows) {
