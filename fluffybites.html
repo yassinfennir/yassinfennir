@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FluffyBites — Natural Treats Dogs Go Crazy For</title>
+  <meta name="description" content="FluffyBites: 100% natural, single-ingredient dog treats. No additives, no grains, no nonsense. Loved by dogs, trusted by owners." />
+  <style>
+    :root {
+      --bg: #fffaf5;
+      --ink: #2b2118;
+      --muted: #7a6a5b;
+      --brand: #f2703d;
+      --brand-dark: #d95a2b;
+      --cream: #fff1e4;
+      --card: #ffffff;
+      --border: #f0e2d4;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255, 250, 245, .92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .logo { font-weight: 800; font-size: 20px; color: var(--brand); }
+    .logo span { color: var(--ink); }
+    .lang-switch { display: flex; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .lang-btn {
+      background: transparent; border: none; padding: 6px 10px;
+      font-weight: 700; font-size: 12px; color: var(--muted); cursor: pointer;
+    }
+    .lang-btn.is-active { background: var(--brand); color: #fff; }
+
+    /* HERO */
+    .hero { padding: 72px 0 56px; text-align: center; background: radial-gradient(600px 300px at 50% -10%, var(--cream), transparent); }
+    .badge {
+      display: inline-block; background: var(--cream); color: var(--brand-dark);
+      font-weight: 700; font-size: 13px; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px;
+    }
+    .hero h1 { font-size: clamp(30px, 5.5vw, 52px); font-weight: 800; line-height: 1.12; letter-spacing: -1px; margin-bottom: 16px; }
+    .hero h1 em { color: var(--brand); font-style: normal; }
+    .hero p.sub { color: var(--muted); font-size: clamp(16px, 2vw, 19px); max-width: 560px; margin: 0 auto 28px; }
+    .cta {
+      display: inline-block; background: var(--brand); color: #fff;
+      font-weight: 700; font-size: 17px; padding: 15px 34px; border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(242, 112, 61, .35);
+      transition: transform .15s, box-shadow .2s;
+    }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(242, 112, 61, .45); }
+    .cta-note { display: block; margin-top: 12px; color: var(--muted); font-size: 13px; }
+
+    /* SECTIONS */
+    section { padding: 64px 0; }
+    .alt { background: var(--cream); }
+    h2 { font-size: clamp(24px, 4vw, 34px); font-weight: 800; letter-spacing: -.5px; text-align: center; margin-bottom: 12px; }
+    .section-sub { text-align: center; color: var(--muted); max-width: 560px; margin: 0 auto 40px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px 20px;
+    }
+    .card .icon { font-size: 30px; margin-bottom: 10px; }
+    .card h3 { font-size: 17px; margin-bottom: 6px; }
+    .card p { color: var(--muted); font-size: 14.5px; }
+
+    /* PAIN */
+    .pain-list { max-width: 620px; margin: 0 auto; display: grid; gap: 12px; }
+    .pain-item {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 14px 18px; display: flex; gap: 12px; align-items: flex-start; font-size: 15px;
+    }
+    .pain-item .x { color: var(--brand); font-weight: 800; }
+
+    /* REVIEWS */
+    .review-note {
+      max-width: 620px; margin: 0 auto 24px; text-align: center;
+      background: #fff8e6; border: 1px dashed #e8c97a; border-radius: 12px;
+      padding: 12px 16px; color: #7a5c14; font-size: 13.5px;
+    }
+    .stars { color: #f5a623; letter-spacing: 2px; margin-bottom: 8px; }
+    .review-name { margin-top: 10px; font-weight: 700; font-size: 14px; }
+
+    /* FAQ */
+    .faq { max-width: 640px; margin: 0 auto; }
+    details {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px 20px; margin-bottom: 12px;
+    }
+    summary { font-weight: 700; cursor: pointer; font-size: 15.5px; }
+    details p { color: var(--muted); margin-top: 10px; font-size: 14.5px; }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; color: var(--muted); font-size: 13.5px; }
+
+    @media (max-width: 560px) {
+      .hero { padding: 52px 0 44px; }
+      section { padding: 48px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav container">
+      <a href="#top" class="logo">Fluffy<span>Bites</span> 🐾</a>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-btn is-active" data-lang="en" type="button">EN</button>
+        <button class="lang-btn" data-lang="de" type="button">DE</button>
+        <button class="lang-btn" data-lang="es" type="button">ES</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <span class="badge"
+          data-en="🐶 100% natural · single ingredient"
+          data-de="🐶 100% natürlich · nur eine Zutat"
+          data-es="🐶 100% natural · un solo ingrediente">🐶 100% natural · single ingredient</span>
+        <h1
+          data-en="The treat your dog would &lt;em&gt;beg&lt;/em&gt; you to buy"
+          data-de="Der Snack, um den dein Hund dich &lt;em&gt;anbetteln&lt;/em&gt; würde"
+          data-es="El premio que tu perro te &lt;em&gt;suplicaría&lt;/em&gt; comprar">
+          The treat your dog would <em>beg</em> you to buy
+        </h1>
+        <p class="sub"
+          data-en="No grains. No additives. No mystery ingredients. Just pure, air-dried treats that dogs love and owners can actually read the label of."
+          data-de="Kein Getreide. Keine Zusatzstoffe. Keine mysteriösen Zutaten. Nur pure, luftgetrocknete Snacks, die Hunde lieben – mit einem Etikett, das man wirklich versteht."
+          data-es="Sin cereales. Sin aditivos. Sin ingredientes misteriosos. Solo premios puros, secados al aire, que a los perros les encantan y cuya etiqueta puedes leer de verdad.">
+          No grains. No additives. No mystery ingredients. Just pure, air-dried
+          treats that dogs love and owners can actually read the label of.
+        </p>
+        <a href="#buy" class="cta"
+          data-en="Get FluffyBites →"
+          data-de="FluffyBites holen →"
+          data-es="Consigue FluffyBites →">Get FluffyBites →</a>
+        <span class="cta-note"
+          data-en="Free shipping over €29 · 30-day happy-dog guarantee"
+          data-de="Gratisversand ab 29 € · 30 Tage Zufriedenheitsgarantie"
+          data-es="Envío gratis desde 29 € · Garantía de 30 días">Free shipping over €29 · 30-day happy-dog guarantee</span>
+      </div>
+    </section>
+
+    <!-- PAIN -->
+    <section class="alt">
+      <div class="container">
+        <h2 data-en="Read the label of your current treats. We'll wait."
+            data-de="Lies mal das Etikett deiner jetzigen Snacks. Wir warten."
+            data-es="Lee la etiqueta de tus premios actuales. Esperamos.">Read the label of your current treats. We'll wait.</h2>
+        <p class="section-sub"
+          data-en="Most supermarket dog treats contain things you wouldn't feed a friend."
+          data-de="Die meisten Supermarkt-Snacks enthalten Dinge, die du keinem Freund geben würdest."
+          data-es="La mayoría de los premios de supermercado contienen cosas que no le darías a un amigo.">Most supermarket dog treats contain things you wouldn't feed a friend.</p>
+        <div class="pain-list">
+          <div class="pain-item"><span class="x">✗</span><span
+            data-en="“Meat and animal derivatives” — which meat? From which animal? Nobody knows."
+            data-de="„Fleisch und tierische Nebenerzeugnisse“ – welches Fleisch? Von welchem Tier? Niemand weiß es."
+            data-es="«Carne y derivados animales» — ¿qué carne? ¿De qué animal? Nadie lo sabe.">“Meat and animal derivatives” — which meat? From which animal? Nobody knows.</span></div>
+          <div class="pain-item"><span class="x">✗</span><span
+            data-en="Sugar and syrups added to treats… for a dog."
+            data-de="Zucker und Sirup im Hundesnack… für einen Hund."
+            data-es="Azúcar y jarabes añadidos a los premios… para un perro.">Sugar and syrups added to treats… for a dog.</span></div>
+          <div class="pain-item"><span class="x">✗</span><span
+            data-en="Artificial colors so the treat looks nice — to you, not your dog."
+            data-de="Künstliche Farbstoffe, damit der Snack hübsch aussieht – für dich, nicht für deinen Hund."
+            data-es="Colorantes artificiales para que el premio se vea bonito — para ti, no para tu perro.">Artificial colors so the treat looks nice — to you, not your dog.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section>
+      <div class="container">
+        <h2 data-en="What makes FluffyBites different"
+            data-de="Was FluffyBites anders macht"
+            data-es="Qué hace diferente a FluffyBites">What makes FluffyBites different</h2>
+        <p class="section-sub"
+          data-en="One ingredient. Air-dried slowly to keep the nutrients. That's the whole recipe."
+          data-de="Eine Zutat. Schonend luftgetrocknet, damit die Nährstoffe erhalten bleiben. Das ist das ganze Rezept."
+          data-es="Un ingrediente. Secado al aire lentamente para conservar los nutrientes. Esa es toda la receta.">One ingredient. Air-dried slowly to keep the nutrients. That's the whole recipe.</p>
+        <div class="grid">
+          <div class="card"><div class="icon">🥩</div>
+            <h3 data-en="Single ingredient" data-de="Nur eine Zutat" data-es="Un solo ingrediente">Single ingredient</h3>
+            <p data-en="100% meat or fish. The label says one word, because that's all there is."
+               data-de="100% Fleisch oder Fisch. Auf dem Etikett steht ein Wort – mehr ist nicht drin."
+               data-es="100% carne o pescado. La etiqueta dice una palabra, porque eso es todo lo que hay.">100% meat or fish. The label says one word, because that's all there is.</p></div>
+          <div class="card"><div class="icon">🌾</div>
+            <h3 data-en="Grain & gluten free" data-de="Getreide- & glutenfrei" data-es="Sin cereales ni gluten">Grain & gluten free</h3>
+            <p data-en="Gentle on sensitive stomachs and great for dogs with allergies."
+               data-de="Sanft zu empfindlichen Mägen und ideal für Hunde mit Allergien."
+               data-es="Suave para estómagos sensibles e ideal para perros con alergias.">Gentle on sensitive stomachs and great for dogs with allergies.</p></div>
+          <div class="card"><div class="icon">💨</div>
+            <h3 data-en="Air-dried, not fried" data-de="Luftgetrocknet, nicht frittiert" data-es="Secado al aire, no frito">Air-dried, not fried</h3>
+            <p data-en="Slow drying preserves nutrients and creates the crunch dogs go crazy for."
+               data-de="Langsames Trocknen erhält Nährstoffe und sorgt für den Crunch, den Hunde lieben."
+               data-es="El secado lento conserva los nutrientes y crea el crujido que vuelve locos a los perros.">Slow drying preserves nutrients and creates the crunch dogs go crazy for.</p></div>
+          <div class="card"><div class="icon">🇪🇺</div>
+            <h3 data-en="Made in the EU" data-de="Hergestellt in der EU" data-es="Hecho en la UE">Made in the EU</h3>
+            <p data-en="Produced under EU food-safety standards. Full traceability, batch by batch."
+               data-de="Produziert nach EU-Lebensmittelstandards. Volle Rückverfolgbarkeit, Charge für Charge."
+               data-es="Producido bajo estándares de seguridad alimentaria de la UE. Trazabilidad total, lote a lote.">Produced under EU food-safety standards. Full traceability, batch by batch.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="alt">
+      <div class="container">
+        <h2 data-en="Happy dogs, happy humans"
+            data-de="Glückliche Hunde, glückliche Menschen"
+            data-es="Perros felices, humanos felices">Happy dogs, happy humans</h2>
+        <div class="review-note"
+          data-en="⚠️ Placeholder reviews below — replace them with REAL customer reviews as soon as you have your first sales. Never publish fake reviews: it's illegal in the EU and destroys trust."
+          data-de="⚠️ Die Bewertungen unten sind Platzhalter — ersetze sie durch ECHTE Kundenbewertungen, sobald du erste Verkäufe hast. Veröffentliche niemals gefälschte Bewertungen: In der EU ist das illegal und zerstört Vertrauen."
+          data-es="⚠️ Las reseñas de abajo son de ejemplo — sustitúyelas por reseñas REALES de clientes en cuanto tengas tus primeras ventas. Nunca publiques reseñas falsas: es ilegal en la UE y destruye la confianza.">
+          ⚠️ Placeholder reviews below — replace them with REAL customer reviews as soon as
+          you have your first sales. Never publish fake reviews: it's illegal in the EU and destroys trust.
+        </div>
+        <div class="grid">
+          <div class="card">
+            <div class="stars">★★★★★</div>
+            <p data-en="[Real customer review goes here]" data-de="[Hier kommt eine echte Kundenbewertung hin]" data-es="[Aquí va una reseña real de cliente]">[Real customer review goes here]</p>
+            <p class="review-name" data-en="— Name, City" data-de="— Name, Stadt" data-es="— Nombre, Ciudad">— Name, City</p>
+          </div>
+          <div class="card">
+            <div class="stars">★★★★★</div>
+            <p data-en="[Real customer review goes here]" data-de="[Hier kommt eine echte Kundenbewertung hin]" data-es="[Aquí va una reseña real de cliente]">[Real customer review goes here]</p>
+            <p class="review-name" data-en="— Name, City" data-de="— Name, Stadt" data-es="— Nombre, Ciudad">— Name, City</p>
+          </div>
+          <div class="card">
+            <div class="stars">★★★★★</div>
+            <p data-en="[Real customer review goes here]" data-de="[Hier kommt eine echte Kundenbewertung hin]" data-es="[Aquí va una reseña real de cliente]">[Real customer review goes here]</p>
+            <p class="review-name" data-en="— Name, City" data-de="— Name, Stadt" data-es="— Nombre, Ciudad">— Name, City</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <div class="container">
+        <h2 data-en="Questions humans ask" data-de="Fragen, die Menschen stellen" data-es="Preguntas que hacen los humanos">Questions humans ask</h2>
+        <div class="faq" style="margin-top: 32px;">
+          <details>
+            <summary data-en="Is it suitable for puppies and senior dogs?" data-de="Ist es für Welpen und ältere Hunde geeignet?" data-es="¿Es apto para cachorros y perros mayores?">Is it suitable for puppies and senior dogs?</summary>
+            <p data-en="Yes — single-ingredient treats are gentle for all ages. For very small puppies, break the treat into smaller pieces."
+               data-de="Ja — Snacks mit nur einer Zutat sind für alle Altersstufen geeignet. Für sehr kleine Welpen den Snack in kleinere Stücke brechen."
+               data-es="Sí — los premios de un solo ingrediente son suaves para todas las edades. Para cachorros muy pequeños, parte el premio en trozos más pequeños.">Yes — single-ingredient treats are gentle for all ages. For very small puppies, break the treat into smaller pieces.</p>
+          </details>
+          <details>
+            <summary data-en="How long does shipping take?" data-de="Wie lange dauert der Versand?" data-es="¿Cuánto tarda el envío?">How long does shipping take?</summary>
+            <p data-en="[Fill in with your real shipping times once your supplier is set up.]"
+               data-de="[Trage hier deine echten Versandzeiten ein, sobald dein Lieferant feststeht.]"
+               data-es="[Rellena con tus tiempos de envío reales cuando tengas configurado tu proveedor.]">[Fill in with your real shipping times once your supplier is set up.]</p>
+          </details>
+          <details>
+            <summary data-en="What if my dog doesn't like them?" data-de="Was, wenn mein Hund sie nicht mag?" data-es="¿Y si a mi perro no le gustan?">What if my dog doesn't like them?</summary>
+            <p data-en="30-day guarantee: if your dog isn't excited, we refund you. No forms, no drama."
+               data-de="30-Tage-Garantie: Wenn dein Hund nicht begeistert ist, bekommst du dein Geld zurück. Ohne Formulare, ohne Drama."
+               data-es="Garantía de 30 días: si tu perro no se emociona, te devolvemos el dinero. Sin formularios, sin dramas.">30-day guarantee: if your dog isn't excited, we refund you. No forms, no drama.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="alt" id="buy" style="text-align:center;">
+      <div class="container">
+        <h2 data-en="Your dog already knows the answer" data-de="Dein Hund kennt die Antwort schon" data-es="Tu perro ya sabe la respuesta">Your dog already knows the answer</h2>
+        <p class="section-sub"
+          data-en="Connect this button to your TikTok Shop or Shopify checkout when your store is live."
+          data-de="Verbinde diesen Button mit deinem TikTok Shop oder Shopify-Checkout, sobald dein Store live ist."
+          data-es="Conecta este botón a tu TikTok Shop o checkout de Shopify cuando tu tienda esté activa.">Connect this button to your TikTok Shop or Shopify checkout when your store is live.</p>
+        <a href="#" class="cta"
+          data-en="Get FluffyBites →" data-de="FluffyBites holen →" data-es="Consigue FluffyBites →">Get FluffyBites →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> FluffyBites ·
+        <span data-en="All rights reserved" data-de="Alle Rechte vorbehalten" data-es="Todos los derechos reservados">All rights reserved</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function applyLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-" + lang + "]").forEach(function (el) {
+        el.innerHTML = el.getAttribute("data-" + lang);
+      });
+      document.querySelectorAll(".lang-btn").forEach(function (btn) {
+        btn.classList.toggle("is-active", btn.getAttribute("data-lang") === lang);
+      });
+      try { localStorage.setItem("fbLang", lang); } catch (e) {}
+    }
+    document.querySelectorAll(".lang-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () { applyLanguage(btn.getAttribute("data-lang")); });
+    });
+    (function () {
+      var lang = "en";
+      try {
+        var saved = localStorage.getItem("fbLang");
+        if (["en", "de", "es"].indexOf(saved) !== -1) lang = saved;
+        else {
+          var nav = (navigator.language || "").toLowerCase();
+          if (nav.indexOf("de") === 0) lang = "de";
+          else if (nav.indexOf("es") === 0) lang = "es";
+        }
+      } catch (e) {}
+      applyLanguage(lang);
+    })();
+  </script>
+</body>
+</html>
