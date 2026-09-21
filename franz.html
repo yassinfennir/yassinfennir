@@ -273,6 +273,44 @@
   .scroll-x { overflow-x: auto; }
 
   .pairs { display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: 3px 14px; margin: 0; }
+
+  /* ---------- numbers 0–100 ---------- */
+  .decade {
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .1em;
+    color: var(--accent);
+    margin: 18px 0 6px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .decade:first-child { margin-top: 0; }
+  .decade em { font-family: var(--body); font-style: normal; font-size: .78rem; color: var(--muted); letter-spacing: 0; }
+  .numgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 0 16px; }
+  .numgrid div {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line-soft);
+    padding: 4px 5px;
+    margin-inline: -5px;
+    font-size: .9rem;
+  }
+  .numgrid .n {
+    font-family: var(--mono);
+    font-size: .78rem;
+    color: var(--muted);
+    min-width: 2.3em;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    flex: 0 0 auto;
+  }
+  .numgrid .w { font-weight: 600; }
+  .numgrid div.tricky { background: var(--warn-soft); border-radius: 3px; }
+  .numgrid div.tricky .w { color: var(--warn); }
+  .numgrid div.tricky .n { color: var(--warn); }
   .pairs div { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--line-soft); padding: 4px 0; font-size: .9rem; }
   .pairs span:last-child { color: var(--muted); text-align: right; }
   .pairs b { font-weight: 600; }
@@ -391,7 +429,7 @@
   <div class="masthead">
     <p class="kicker">Vos Clés · Delf A1 · Prüfung</p>
     <h1>Chuleta DELF A1</h1>
-    <p>Todo lo que hay en tus hojas, en una sola página: presentarte, être y avoir, el presente entero, el alfabeto para deletrear, los sonidos, la familia y los animales. Al final, 34 preguntas con la respuesta tapada.</p>
+    <p>Todo lo que hay en tus hojas, en una sola página: presentarte, être y avoir, el presente entero, el alfabeto para deletrear, los sonidos, la familia y los animales. Al final, 39 preguntas con la respuesta tapada.</p>
   </div>
 
   <nav class="chips" aria-label="Secciones">
@@ -815,49 +853,22 @@
   <section id="nombres">
     <div class="sec-head"><span class="sec-num">10</span><h2>Nombres, jours et mois</h2></div>
 
-    <h3>0 – 20</h3>
+    <h3>De 0 a 100, todos</h3>
+    <p class="sec-sub">En <span style="color:var(--warn);font-weight:700">naranja</span>, los ocho que se fallan siempre. Los demás salen solos una vez tienes del 1 al 16.</p>
     <div class="card">
-      <div class="pairs">
-        <div><span><b>0</b></span><span>zéro</span></div>
-        <div><span><b>1</b></span><span>un</span></div>
-        <div><span><b>2</b></span><span>deux</span></div>
-        <div><span><b>3</b></span><span>trois</span></div>
-        <div><span><b>4</b></span><span>quatre</span></div>
-        <div><span><b>5</b></span><span>cinq</span></div>
-        <div><span><b>6</b></span><span>six</span></div>
-        <div><span><b>7</b></span><span>sept</span></div>
-        <div><span><b>8</b></span><span>huit</span></div>
-        <div><span><b>9</b></span><span>neuf</span></div>
-        <div><span><b>10</b></span><span>dix</span></div>
-        <div><span><b>11</b></span><span>onze</span></div>
-        <div><span><b>12</b></span><span>douze</span></div>
-        <div><span><b>13</b></span><span>treize</span></div>
-        <div><span><b>14</b></span><span>quatorze</span></div>
-        <div><span><b>15</b></span><span>quinze</span></div>
-        <div><span><b>16</b></span><span>seize</span></div>
-        <div><span><b>17</b></span><span>dix-sept</span></div>
-        <div><span><b>18</b></span><span>dix-huit</span></div>
-        <div><span><b>19</b></span><span>dix-neuf</span></div>
-        <div><span><b>20</b></span><span>vingt</span></div>
-      </div>
+      <div id="nums"></div>
     </div>
 
-    <h3>Las decenas</h3>
-    <div class="card">
-      <div class="pairs">
-        <div><span><b>30</b></span><span>trente</span></div>
-        <div><span><b>40</b></span><span>quarante</span></div>
-        <div><span><b>50</b></span><span>cinquante</span></div>
-        <div><span><b>60</b></span><span>soixante</span></div>
-        <div><span><b>70</b></span><span>soixante-dix</span></div>
-        <div><span><b>80</b></span><span>quatre-vingts</span></div>
-        <div><span><b>90</b></span><span>quatre-vingt-dix</span></div>
-        <div><span><b>100</b></span><span>cent</span></div>
-      </div>
-      <p class="note" style="font-size:.82rem;color:var(--muted);margin:12px 0 0;border-top:1px dashed var(--line);padding-top:8px">
-        21, 31, 41… llevan <strong>et</strong>: <em>vingt <strong>et</strong> un, trente <strong>et</strong> un</em>. Pero 22 es <em>vingt-deux</em>, sin et.<br>
-        Aquí en Suiza se dice <em>septante</em> (70), <em>huitante</em> (80) y <em>nonante</em> (90) — pero en el DELF usa las formas de arriba, que son las estándar.
-      </p>
+    <div class="rule">
+      <p><strong>Las cuatro reglas que generan los 100:</strong></p>
+      <p>1 · Solo hay que memorizar de verdad <strong>0–16</strong>. Del 17 al 19 ya son sumas: <em>dix-sept, dix-huit, dix-neuf</em>.</p>
+      <p>2 · <strong>21, 31, 41, 51, 61, 71</strong> llevan <code>et</code> y sin guiones: <em>vingt et un</em>. Pero 22 es <em>vingt-deux</em>, con guion y sin et.</p>
+      <p>3 · <strong>70 = 60 + 10</strong> → <em>soixante-dix</em>, y sigue contando <em>soixante-onze, soixante-douze…</em> hasta <em>soixante-dix-neuf</em>.</p>
+      <p>4 · <strong>80 = 4 × 20</strong> → <em>quatre-vingts</em> (con <strong>s</strong> solo cuando va solo), y <strong>90 = 4 × 20 + 10</strong> → <em>quatre-vingt-dix, quatre-vingt-onze…</em>. Ojo: 81 es <em>quatre-vingt-un</em>, <strong>sin</strong> et.</p>
+    </div>
+
+    <div class="tip">
+      <p><strong>Aquí en Suiza</strong> se dice <em>septante</em> (70), <em>huitante</em> (80) y <em>nonante</em> (90), y es mucho más fácil — pero en el DELF usa las formas estándar de arriba. Si se te escapa <em>septante</em> te van a entender, no es un error grave; aun así, aprende <em>soixante-dix</em>.</p>
     </div>
 
     <h3>Les jours &amp; les mois — todo en minúscula</h3>
@@ -930,7 +941,7 @@
 
   <!-- ============ 12 ============ -->
   <section id="quiz">
-    <div class="sec-head"><span class="sec-num">12</span><h2>Quiz — 34 preguntas</h2></div>
+    <div class="sec-head"><span class="sec-num">12</span><h2>Quiz — 39 preguntas</h2></div>
     <p class="sec-sub">Responde <strong>en voz alta o por escrito</strong> antes de abrir la tarjeta. Si la abres sin intentarlo, no sirve de nada.</p>
 
     <div class="quiz-bar">
@@ -1245,6 +1256,61 @@
       }).join("");
     }
 
+    /* ---------- numbers 0–100 ---------- */
+    var UNITS = ["zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf",
+      "dix", "onze", "douze", "treize", "quatorze", "quinze", "seize",
+      "dix-sept", "dix-huit", "dix-neuf"];
+    var TENS = { 20: "vingt", 30: "trente", 40: "quarante", 50: "cinquante", 60: "soixante" };
+
+    function frenchNumber(n) {
+      if (n <= 19) return UNITS[n];
+      if (n === 100) return "cent";
+      if (n >= 80) {
+        if (n === 80) return "quatre-vingts";
+        return "quatre-vingt-" + UNITS[n - 80];
+      }
+      if (n >= 70) {
+        if (n === 71) return "soixante et onze";
+        return "soixante-" + UNITS[n - 60];
+      }
+      var base = Math.floor(n / 10) * 10;
+      var unit = n % 10;
+      if (unit === 0) return TENS[base];
+      if (unit === 1) return TENS[base] + " et un";
+      return TENS[base] + "-" + UNITS[unit];
+    }
+
+    var TRICKY = [21, 31, 41, 51, 61, 71, 80, 81];
+    var DECADES = [
+      [0, 9, "los que hay que memorizar"],
+      [10, 19, "del 17 al 19 ya son sumas"],
+      [20, 29, ""],
+      [30, 39, ""],
+      [40, 49, ""],
+      [50, 59, ""],
+      [60, 69, ""],
+      [70, 79, "60 + 10, 11, 12…"],
+      [80, 89, "4 × 20"],
+      [90, 100, "4 × 20 + 10, 11, 12…"]
+    ];
+
+    var numsEl = document.getElementById("nums");
+    if (numsEl) {
+      numsEl.innerHTML = DECADES.map(function (d) {
+        var cells = "";
+        for (var i = d[0]; i <= d[1]; i++) {
+          cells +=
+            '<div class="' + (TRICKY.indexOf(i) > -1 ? "tricky" : "") + '">' +
+            '<span class="n">' + i + '</span><span class="w">' + frenchNumber(i) + "</span></div>";
+        }
+        return (
+          '<p class="decade"><span>' + d[0] + " – " + d[1] + "</span>" +
+          (d[2] ? "<em>" + d[2] + "</em>" : "") +
+          '</p><div class="numgrid">' + cells + "</div>"
+        );
+      }).join("");
+    }
+
     /* ---------- quiz ---------- */
     var QUIZ = [
       { g: "Être ou avoir" },
@@ -1285,6 +1351,13 @@
       { q: "Michel es de Francia y habla italiano. ¿Cuál es su <em>nationalité</em>?", a: "français", w: "Es la nacionalidad, no el idioma ni el país. Marina, su madre, es <em>italienne</em>." },
       { q: "Traduce: «Nací el 10 de abril de 2005 en España.»", a: "Je suis né le 10 avril 2005 en Espagne.", w: "Mes en minúscula, sin «de», y España es Espagne." },
       { q: "¿Cómo se dice @ en voz alta?", a: "arobase", w: "" },
+
+      { g: "Les nombres" },
+      { q: "Escribe en letra: 21, 22, 31.", a: "vingt et un · vingt-deux · trente et un", w: "El 1 lleva «et» y sin guion; el resto, guion y sin et." },
+      { q: "Escribe en letra: 70, 71, 76.", a: "soixante-dix · soixante et onze · soixante-seize", w: "70 es 60+10. El 71 es el único de la serie que lleva «et»." },
+      { q: "Escribe en letra: 80, 81, 92.", a: "quatre-vingts · quatre-vingt-un · quatre-vingt-douze", w: "80 solo lleva -s cuando va solo. 81 NO lleva et." },
+      { q: "Escribe en letra: 97.", a: "quatre-vingt-dix-sept", w: "4 × 20 + 17." },
+      { q: "Lee este teléfono: 079 99 331 16.", a: "zéro soixante-dix-neuf, quatre-vingt-dix-neuf, trois cent trente et un, seize", w: "En el examen se leen normalmente de dos en dos: zéro sept neuf, neuf neuf… También vale decir los dígitos uno a uno." },
 
       { g: "L'alphabet et les sons" },
       { q: "Deletrea EL FENNIR en francés.", a: "e · elle · effe · e · deux enne · i · erre", w: "" },
