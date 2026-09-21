@@ -1,0 +1,1325 @@
+<title>Chuleta DELF A1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --paper: #eef1f5;
+    --surface: #ffffff;
+    --surface-2: #f6f8fb;
+    --ink: #131a24;
+    --muted: #5d6b7e;
+    --line: #d9e0ea;
+    --line-soft: #e8edf3;
+    --accent: #2f5fb3;
+    --accent-soft: #e6edfa;
+    --hl: rgba(163, 226, 96, 0.5);
+    --warn: #a4531c;
+    --warn-soft: #fbeee2;
+    --ok: #2c7a55;
+    --ok-soft: #e4f3ec;
+    --shadow: 0 1px 2px rgba(19, 26, 36, .05), 0 6px 18px rgba(19, 26, 36, .05);
+
+    --display: "Fraunces", Georgia, "Times New Roman", serif;
+    --body: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #101419;
+      --surface: #171d26;
+      --surface-2: #1d242f;
+      --ink: #e7ecf3;
+      --muted: #97a4b6;
+      --line: #2a333f;
+      --line-soft: #222a35;
+      --accent: #85abf0;
+      --accent-soft: #1c2740;
+      --hl: rgba(150, 216, 86, 0.28);
+      --warn: #dda06b;
+      --warn-soft: #2e2418;
+      --ok: #70c79a;
+      --ok-soft: #16281f;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .25);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper: #101419;
+    --surface: #171d26;
+    --surface-2: #1d242f;
+    --ink: #e7ecf3;
+    --muted: #97a4b6;
+    --line: #2a333f;
+    --line-soft: #222a35;
+    --accent: #85abf0;
+    --accent-soft: #1c2740;
+    --hl: rgba(150, 216, 86, 0.28);
+    --warn: #dda06b;
+    --warn-soft: #2e2418;
+    --ok: #70c79a;
+    --ok-soft: #16281f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .25);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    padding-block: 0 64px;
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    padding-block: 32px 20px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-size: .7rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 8px;
+  }
+  .masthead h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2rem, 8vw, 2.9rem);
+    line-height: 1.02;
+    letter-spacing: -.02em;
+    margin: 0 0 10px;
+    text-wrap: balance;
+  }
+  .masthead p {
+    margin: 0;
+    color: var(--muted);
+    max-width: 52ch;
+  }
+
+  /* ---------- nav ---------- */
+  nav.chips {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+  .chips-scroll {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-block: 10px;
+    scrollbar-width: none;
+  }
+  .chips-scroll::-webkit-scrollbar { display: none; }
+  .chips-scroll a {
+    flex: 0 0 auto;
+    font-family: var(--mono);
+    font-size: .72rem;
+    text-decoration: none;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 5px 11px;
+    white-space: nowrap;
+  }
+  .chips-scroll a:hover,
+  .chips-scroll a:focus-visible { color: var(--accent); border-color: var(--accent); }
+
+  /* ---------- sections ---------- */
+  section { padding-block: 30px 6px; scroll-margin-top: 64px; }
+  .sec-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+  .sec-num {
+    font-family: var(--mono);
+    font-size: .72rem;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 1px 5px;
+    flex: 0 0 auto;
+  }
+  section > h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.35rem, 5vw, 1.75rem);
+    letter-spacing: -.015em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .sec-sub { color: var(--muted); margin: 6px 0 18px; max-width: 58ch; }
+  h3 {
+    font-family: var(--body);
+    font-weight: 700;
+    font-size: .8rem;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 24px 0 10px;
+  }
+
+  /* ---------- cards ---------- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+  }
+  .stack { display: flex; flex-direction: column; gap: 12px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+
+  /* ---------- the mistake blocks ---------- */
+  .flaw {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--warn);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .flaw h4 {
+    font-family: var(--body);
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+  }
+  .flaw p { margin: 0 0 6px; }
+  .flaw p:last-child { margin-bottom: 0; }
+  .bad, .good { font-family: var(--mono); font-size: .86rem; display: block; margin: 3px 0; }
+  .bad { color: var(--warn); text-decoration: line-through; text-decoration-thickness: 1px; }
+  .good { color: var(--ok); }
+  .bad::before { content: "✗ "; text-decoration: none; display: inline-block; }
+  .good::before { content: "✓ "; }
+
+  /* ---------- Q&A pairs ---------- */
+  .qa { border-top: 1px solid var(--line-soft); padding-block: 11px; }
+  .qa:first-of-type { border-top: 0; }
+  .qa .q { font-weight: 600; margin: 0; }
+  .qa .q .es { font-weight: 400; color: var(--muted); font-size: .88em; }
+  .qa .formel {
+    font-family: var(--mono);
+    font-size: .78rem;
+    color: var(--muted);
+    margin: 3px 0 0;
+  }
+  .qa .formel b { color: var(--accent); font-weight: 700; }
+  .qa .a {
+    margin: 6px 0 0;
+    padding-left: 12px;
+    border-left: 2px solid var(--accent);
+    color: var(--ink);
+  }
+
+  /* ---------- verb tables ---------- */
+  .verbs { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 12px; }
+  .verb {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    box-shadow: var(--shadow);
+  }
+  .verb > header { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+  .verb h4 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.18rem;
+    margin: 0;
+    letter-spacing: -.01em;
+  }
+  .verb .tag { font-family: var(--mono); font-size: .64rem; color: var(--muted); text-align: right; line-height: 1.3; }
+  .verb dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; align-items: baseline; }
+  .verb dt { font-size: .78rem; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+  .verb dd { margin: 0; font-family: var(--mono); font-size: .88rem; font-weight: 500; }
+  .verb .note { margin: 9px 0 0; font-size: .78rem; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 7px; }
+
+  mark.end {
+    background: var(--hl);
+    color: inherit;
+    border-radius: 2px;
+    padding: 0 .12em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .irr {
+    border-bottom: 2px solid var(--warn);
+    padding-bottom: 1px;
+  }
+  .zero { color: var(--warn); font-size: .8em; vertical-align: super; }
+
+  /* ---------- word lists ---------- */
+  table.lex { width: 100%; border-collapse: collapse; font-size: .92rem; }
+  table.lex th, table.lex td { text-align: left; padding: 6px 10px 6px 0; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  table.lex th { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+  table.lex td.fr { font-weight: 600; white-space: nowrap; }
+  table.lex td.de { color: var(--muted); }
+  .scroll-x { overflow-x: auto; }
+
+  .pairs { display: grid; grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: 3px 14px; margin: 0; }
+  .pairs div { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--line-soft); padding: 4px 0; font-size: .9rem; }
+  .pairs span:last-child { color: var(--muted); text-align: right; }
+  .pairs b { font-weight: 600; }
+
+  /* ---------- alphabet ---------- */
+  .alpha { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 7px; }
+  .letter {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 7px 8px;
+    text-align: center;
+  }
+  .letter.diff { background: var(--accent-soft); border-color: var(--accent); }
+  .letter b { display: block; font-family: var(--display); font-size: 1.25rem; line-height: 1.1; }
+  .letter span { display: block; font-family: var(--mono); font-size: .72rem; color: var(--muted); }
+  .letter.diff span { color: var(--accent); font-weight: 700; }
+
+  /* ---------- sounds ---------- */
+  .sound { display: grid; grid-template-columns: 62px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line-soft); align-items: baseline; }
+  .sound b { font-family: var(--display); font-size: 1.3rem; color: var(--accent); }
+  .sound .ex { font-family: var(--mono); font-size: .82rem; color: var(--muted); display: block; margin-top: 2px; }
+
+  /* ---------- quiz ---------- */
+  .quiz-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
+  button.ctl {
+    font-family: var(--body);
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--surface);
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 7px;
+    padding: 7px 14px;
+    cursor: pointer;
+  }
+  button.ctl.ghost { background: transparent; color: var(--accent); }
+  button.ctl:hover { filter: brightness(1.08); }
+  .quiz-count { font-family: var(--mono); font-size: .76rem; color: var(--muted); }
+
+  details.q {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    margin-bottom: 8px;
+    box-shadow: var(--shadow);
+  }
+  details.q > summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 12px 14px;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    font-weight: 600;
+  }
+  details.q > summary::-webkit-details-marker { display: none; }
+  details.q > summary .n { font-family: var(--mono); font-size: .72rem; color: var(--accent); flex: 0 0 auto; }
+  details.q > summary::after {
+    content: "?";
+    margin-left: auto;
+    font-family: var(--mono);
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    width: 20px; height: 20px;
+    display: grid; place-items: center;
+    font-size: .72rem;
+    flex: 0 0 auto;
+  }
+  details.q[open] > summary::after { content: "−"; color: var(--ok); border-color: var(--ok); }
+  details.q .ans {
+    padding: 0 14px 13px 40px;
+    border-top: 1px solid var(--line-soft);
+    padding-top: 11px;
+  }
+  details.q .ans .sol { font-family: var(--mono); color: var(--ok); font-weight: 700; display: block; }
+  details.q .ans .why { color: var(--muted); font-size: .9rem; margin: 5px 0 0; }
+  .qgroup { font-family: var(--body); font-size: .8rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin: 22px 0 9px; }
+
+  /* ---------- misc ---------- */
+  .tip {
+    background: var(--ok-soft);
+    border: 1px solid var(--ok);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 14px;
+  }
+  .tip strong { color: var(--ok); }
+  .rule {
+    background: var(--accent-soft);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 12px 0;
+  }
+  .rule p { margin: 0; }
+  .rule p + p { margin-top: 6px; }
+  code { font-family: var(--mono); font-size: .88em; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+  footer {
+    margin-top: 44px;
+    padding-top: 18px;
+    border-top: 2px solid var(--ink);
+    color: var(--muted);
+    font-size: .88rem;
+  }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="masthead">
+    <p class="kicker">Vos Clés · Delf A1 · Prüfung</p>
+    <h1>Chuleta DELF A1</h1>
+    <p>Todo lo que hay en tus hojas, en una sola página: presentarte, être y avoir, el presente entero, el alfabeto para deletrear, los sonidos, la familia y los animales. Al final, 34 preguntas con la respuesta tapada.</p>
+  </div>
+
+  <nav class="chips" aria-label="Secciones">
+    <div class="chips-scroll">
+      <a href="#fallos">0 · Tus fallos</a>
+      <a href="#presenter">1 · Se présenter</a>
+      <a href="#fiche">2 · La fiche</a>
+      <a href="#etre-avoir">3 · Être / Avoir</a>
+      <a href="#reguliers">4 · Présent régulier</a>
+      <a href="#irreguliers">5 · Irréguliers</a>
+      <a href="#alphabet">6 · Alphabet</a>
+      <a href="#sons">7 · Les sons</a>
+      <a href="#famille">8 · La famille</a>
+      <a href="#animaux">9 · Les animaux</a>
+      <a href="#nombres">10 · Nombres &amp; dates</a>
+      <a href="#pays">11 · Pays</a>
+      <a href="#quiz">12 · Quiz</a>
+    </div>
+  </nav>
+
+  <!-- ============ 0 ============ -->
+  <section id="fallos">
+    <div class="sec-head"><span class="sec-num">00</span><h2>Los fallos que ya has cometido</h2></div>
+    <p class="sec-sub">Esto no es teoría: son los errores exactos que están en tus hojas. Si mañana solo repasas una sección, que sea esta.</p>
+
+    <div class="stack">
+
+      <div class="flaw">
+        <h4>Nom y Prénom están al revés (lo hiciste dos veces)</h4>
+        <p><code>Nom</code> = apellido = <em>Nachname</em>. <code>Prénom</code> = nombre = <em>Vorname</em>. La palabra <code>nom</code> engaña porque suena a «nombre», pero es el apellido.</p>
+        <span class="bad">Nom : Yassin · Prénom : El Fennir</span>
+        <span class="good">Nom : El Fennir · Prénom : Yassin</span>
+        <p>El libro te lo da resuelto: <em>«C'est quoi ton prénom ? — Julie ! / Quel est ton nom de famille ? — Garnier.»</em></p>
+      </div>
+
+      <div class="flaw">
+        <h4>La edad siempre lleva <em>ans</em></h4>
+        <p>En francés no se puede decir la edad sin la palabra <code>ans</code>. Y el verbo es <strong>avoir</strong>, no être (igual que en español «tener», no como en alemán <em>ich bin 21</em>).</p>
+        <span class="bad">Âge : 21 · J'ai 24.07.1986. 40 ans</span>
+        <span class="good">J'ai 21 ans. · Je suis né le 24 juillet 1986.</span>
+      </div>
+
+      <div class="flaw">
+        <h4><em>Je viens de</em> ≠ <em>J'habite à</em></h4>
+        <p>En la hoja de Katja tachaste Berlín y pusiste Lyon en «je viens de». Son dos cosas distintas: <code>je viens de</code> es de dónde <strong>eres / has nacido</strong>, <code>j'habite à</code> es dónde <strong>vives ahora</strong>.</p>
+        <span class="good">Je viens de Berlin. J'habite à Lyon, en France.</span>
+      </div>
+
+      <div class="flaw">
+        <h4>La nacionalidad es un adjetivo, no el país</h4>
+        <p>Y cambia en femenino. En la ficha de Michel pusiste «France» e «Italie» como nacionalidad.</p>
+        <span class="bad">Nationalité : France / Italie</span>
+        <span class="good">Nationalité : français / italienne</span>
+      </div>
+
+      <div class="flaw">
+        <h4>En francés van en minúscula: idiomas, meses y días</h4>
+        <p>Esto es lo contrario del alemán, y por eso se te escapa. <em>Allemand → allemand</em>, <em>Juliet → juillet</em>, <em>un Lapin → un lapin</em>.</p>
+        <span class="bad">Je parle Allemand… le 24 Juliet</span>
+        <span class="good">Je parle allemand… le 24 juillet</span>
+      </div>
+
+      <div class="flaw">
+        <h4>El adjetivo concuerda con el sustantivo</h4>
+        <p><code>sœur</code> es femenino, así que no puede llevar <em>un</em> ni <em>petit</em>.</p>
+        <span class="bad">J'ai un petit sœur. Ma petit sœur…</span>
+        <span class="good">J'ai une petite sœur. Ma petite sœur…</span>
+      </div>
+
+      <div class="flaw">
+        <h4>Lee bien quién es quién antes de escribir</h4>
+        <p>En la hoja de Katja, el enunciado decía <strong>Mari : Pablo</strong> (marido) y <strong>Enfant : Laurent</strong> (hijo). Tú copiaste la plantilla de Michel y escribiste «mon père s'appelle Pablo» y «ma petite sœur Laurent». Al final te diste cuenta y lo corregiste abajo, pero eso en el examen cuesta puntos.</p>
+        <span class="good">Mon mari s'appelle Pablo, il a 45 ans, il est espagnol. J'ai un fils unique, Laurent, qui a 5 ans.</span>
+      </div>
+
+      <div class="flaw">
+        <h4>Detalles que ya casi tienes</h4>
+        <span class="bad">Nous avon aussi… · vous → être · Lieu de naissance : Spain</span>
+        <span class="good">Nous avons aussi… · vous êtes · Lieu de naissance : Espagne</span>
+        <p><em>être</em> es el infinitivo; la forma de <em>vous</em> es <strong>êtes</strong>. Y «Spain» es inglés: en francés es <strong>l'Espagne</strong>.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 1 ============ -->
+  <section id="presenter">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Se présenter</h2></div>
+    <p class="sec-sub">Las 13 preguntas de tu hoja. A la izquierda la forma <strong>amical</strong> (tú), debajo en azul la forma <strong>formel</strong> (usted) — el examinador puede usar cualquiera de las dos.</p>
+
+    <div class="card">
+      <div class="qa">
+        <p class="q">1. Comment tu t'appelles ? <span class="es">— ¿Cómo te llamas?</span></p>
+        <p class="formel">formel : <b>Comment vous appelez-vous ?</b></p>
+        <p class="a">Je m'appelle Yassin El Fennir. / Moi, c'est Yassin.</p>
+      </div>
+      <div class="qa">
+        <p class="q">2. Quel âge as-tu ? <span class="es">— ¿Cuántos años tienes?</span></p>
+        <p class="formel">formel : <b>Quel âge avez-vous ?</b></p>
+        <p class="a">J'ai ___ ans.</p>
+      </div>
+      <div class="qa">
+        <p class="q">3. Tu es né en quelle année ? <span class="es">— ¿En qué año naciste?</span></p>
+        <p class="formel">formel : <b>Vous êtes né(e) en quelle année ?</b></p>
+        <p class="a">Je suis né en ___. <span class="es">(mujer: née)</span></p>
+      </div>
+      <div class="qa">
+        <p class="q">4. Quand fêtes-tu ton anniversaire ? <span class="es">— ¿Cuándo es tu cumpleaños?</span></p>
+        <p class="formel">formel : <b>Quand fêtez-vous votre anniversaire ?</b></p>
+        <p class="a">Mon anniversaire, c'est le ___ (le 10 avril).</p>
+      </div>
+      <div class="qa">
+        <p class="q">5. Ça tombe quel jour cette année ? <span class="es">— ¿Qué día cae este año?</span></p>
+        <p class="a">Cette année, ça tombe un jeudi.</p>
+      </div>
+      <div class="qa">
+        <p class="q">6. Quelle est ta nationalité ? <span class="es">— ¿Cuál es tu nacionalidad?</span></p>
+        <p class="formel">formel : <b>Quelle est votre nationalité ?</b></p>
+        <p class="a">Je suis espagnol. / Ma nationalité est espagnole.</p>
+      </div>
+      <div class="qa">
+        <p class="q">7. D'où viens-tu ? <span class="es">— ¿De dónde vienes?</span></p>
+        <p class="formel">formel : <b>D'où venez-vous ?</b></p>
+        <p class="a">Je viens d'Espagne.</p>
+      </div>
+      <div class="qa">
+        <p class="q">8. Où tu habites ? <span class="es">— ¿Dónde vives?</span></p>
+        <p class="formel">formel : <b>Où habitez-vous ?</b></p>
+        <p class="a">J'habite à Uster, en Suisse.</p>
+      </div>
+      <div class="qa">
+        <p class="q">9. Avec qui tu habites ? <span class="es">— ¿Con quién vives?</span></p>
+        <p class="formel">formel : <b>Avec qui habitez-vous ?</b></p>
+        <p class="a">J'habite avec ma famille. / J'habite seul.</p>
+      </div>
+      <div class="qa">
+        <p class="q">10. Combien de frères et de sœurs as-tu ? <span class="es">— ¿Cuántos hermanos tienes?</span></p>
+        <p class="formel">formel : <b>Combien avez-vous de frères et de sœurs ?</b></p>
+        <p class="a">J'ai un frère et deux sœurs. / Je suis fils unique.</p>
+      </div>
+      <div class="qa">
+        <p class="q">11. Quelle est ta profession ? <span class="es">— ¿A qué te dedicas?</span></p>
+        <p class="formel">formel : <b>Quelle est votre profession ?</b></p>
+        <p class="a">Je suis développeur web. / Je suis étudiant.</p>
+      </div>
+      <div class="qa">
+        <p class="q">12. Quelles langues parles-tu ? <span class="es">— ¿Qué idiomas hablas?</span></p>
+        <p class="formel">formel : <b>Quelles langues parlez-vous ?</b></p>
+        <p class="a">Je parle espagnol, allemand et un peu français.</p>
+      </div>
+      <div class="qa">
+        <p class="q">13. Que fais-tu pendant ton temps libre ? <span class="es">— ¿Qué haces en tu tiempo libre?</span></p>
+        <p class="formel">formel : <b>Que faites-vous pendant votre temps libre ?</b></p>
+        <p class="a">Pendant mon temps libre, je fais du sport et j'écoute de la musique.</p>
+      </div>
+    </div>
+
+    <div class="rule">
+      <p><strong>Cómo se pasa de amical a formel:</strong> <code>tu</code> → <code>vous</code>, <code>ton / ta</code> → <code>votre</code>, y el verbo se pone en la forma de <em>vous</em>.</p>
+      <p><code>tu t'appelles</code> → <code>vous vous appelez</code> · <code>tu as</code> → <code>vous avez</code> · <code>tu viens</code> → <code>vous venez</code> · <code>tu fais</code> → <code>vous faites</code></p>
+    </div>
+
+    <div class="tip">
+      <p><strong>Tu presentación de memoria.</strong> Apréndete este bloque entero y ya tienes la mitad del oral aprobada:</p>
+      <p style="font-family:var(--mono);font-size:.88rem;margin-top:8px">Bonjour ! Je m'appelle Yassin El Fennir. J'ai ___ ans. Je suis espagnol, je viens d'Espagne, mais j'habite à Uster, en Suisse. Je parle espagnol, allemand et un peu français. Dans ma famille, nous sommes ___. Pendant mon temps libre, je fais du sport. Merci !</p>
+    </div>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section id="fiche">
+    <div class="sec-head"><span class="sec-num">02</span><h2>La fiche d'identité</h2></div>
+    <p class="sec-sub">Los campos del formulario, en los tres idiomas. Es la parte escrita que cae seguro.</p>
+
+    <div class="card scroll-x">
+      <table class="lex">
+        <thead><tr><th>Français</th><th>Español</th><th>Deutsch</th></tr></thead>
+        <tbody>
+          <tr><td class="fr">Nom (de famille)</td><td>apellido</td><td class="de">Nachname</td></tr>
+          <tr><td class="fr">Prénom</td><td>nombre</td><td class="de">Vorname</td></tr>
+          <tr><td class="fr">Âge</td><td>edad</td><td class="de">Alter</td></tr>
+          <tr><td class="fr">Date de naissance</td><td>fecha de nacimiento</td><td class="de">Geburtsdatum</td></tr>
+          <tr><td class="fr">Lieu de naissance</td><td>lugar de nacimiento</td><td class="de">Geburtsort</td></tr>
+          <tr><td class="fr">Nationalité</td><td>nacionalidad</td><td class="de">Staatsangehörigkeit</td></tr>
+          <tr><td class="fr">Langues parlées</td><td>idiomas hablados</td><td class="de">gesprochene Sprachen</td></tr>
+          <tr><td class="fr">Adresse</td><td>dirección</td><td class="de">Adresse</td></tr>
+          <tr><td class="fr">Code postal</td><td>código postal</td><td class="de">PLZ</td></tr>
+          <tr><td class="fr">Numéro de téléphone</td><td>teléfono</td><td class="de">Telefonnummer</td></tr>
+          <tr><td class="fr">Courriel / mail</td><td>correo</td><td class="de">E-Mail</td></tr>
+          <tr><td class="fr">Profession</td><td>profesión</td><td class="de">Beruf</td></tr>
+          <tr><td class="fr">Animaux domestiques</td><td>mascotas</td><td class="de">Haustiere</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule">
+      <p><strong>Cómo se dicen en voz alta:</strong></p>
+      <p><code>@</code> = <strong>arobase</strong> · <code>.</code> = <strong>point</strong> · <code>-</code> = <strong>trait d'union</strong> · <code>_</code> = <strong>tiret bas</strong></p>
+      <p>Dirección: el número va <strong>delante</strong> → <em>J'habite <strong>10, rue des Lilas</strong></em>.</p>
+      <p>Teléfono: se lee <strong>de dos en dos</strong> → 01 42 41 40 50 = <em>zéro un, quarante-deux, quarante et un, quarante, cinquante</em>.</p>
+    </div>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section id="etre-avoir">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Être y Avoir</h2></div>
+    <p class="sec-sub">Los dos verbos que más caen y donde más fallas. La conjugación ya te la sabes; lo que falla es <em>cuál</em> de los dos.</p>
+
+    <div class="verbs" id="verbs-base"></div>
+
+    <div class="rule">
+      <p><strong>La regla de los 2 segundos:</strong> mira la palabra que viene <em>después</em> del hueco.</p>
+      <p>¿Es un <strong>sustantivo</strong> (una cosa)? → <code>avoir</code>. &nbsp;·&nbsp; ¿Es un <strong>adjetivo</strong>? → <code>être</code>.</p>
+      <p>Y antes de nada: <code>es</code> solo existe con <strong>tu</strong>. Con <em>il / elle</em> solo caben <code>est</code> o <code>a</code>.</p>
+    </div>
+
+    <div class="grid-2" style="margin-top:14px">
+      <div class="card">
+        <h3 style="margin-top:0">Siempre AVOIR</h3>
+        <div class="pairs">
+          <div><span><b>avoir ___ ans</b></span><span>tener años</span></div>
+          <div><span><b>avoir faim</b></span><span>tener hambre</span></div>
+          <div><span><b>avoir soif</b></span><span>tener sed</span></div>
+          <div><span><b>avoir chaud / froid</b></span><span>tener calor / frío</span></div>
+          <div><span><b>avoir mal à…</b></span><span>dolerle algo</span></div>
+          <div><span><b>avoir raison / tort</b></span><span>tener razón / no tenerla</span></div>
+          <div><span><b>avoir peur</b></span><span>tener miedo</span></div>
+          <div><span><b>avoir sommeil</b></span><span>tener sueño</span></div>
+          <div><span><b>avoir besoin de</b></span><span>necesitar</span></div>
+          <div><span><b>avoir envie de</b></span><span>tener ganas de</span></div>
+          <div><span><b>avoir les yeux bleus</b></span><span>tener ojos azules</span></div>
+          <div><span><b>avoir bonne mine</b></span><span>tener buena cara</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Siempre ÊTRE</h3>
+        <div class="pairs">
+          <div><span><b>être fatigué(e)</b></span><span>estar cansado</span></div>
+          <div><span><b>être malade</b></span><span>estar enfermo</span></div>
+          <div><span><b>être en bonne santé</b></span><span>estar sano</span></div>
+          <div><span><b>être en retard</b></span><span>llegar tarde</span></div>
+          <div><span><b>être en vacances</b></span><span>estar de vacaciones</span></div>
+          <div><span><b>être de bonne humeur</b></span><span>estar de buen humor</span></div>
+          <div><span><b>être d'accord</b></span><span>estar de acuerdo</span></div>
+          <div><span><b>être né(e)</b></span><span>haber nacido</span></div>
+          <div><span><b>être gourmand(e)</b></span><span>ser goloso</span></div>
+          <div><span><b>être charmant(e)</b></span><span>ser encantador</span></div>
+        </div>
+        <p class="note" style="font-size:.82rem;color:var(--muted);margin:10px 0 0">Con la profesión, <strong>sin artículo</strong>: <em>Je suis étudiant</em>, no «un étudiant».</p>
+      </div>
+    </div>
+
+    <div class="tip">
+      <p><strong>Trampa de tu hoja.</strong> <em>bonne mine</em> y <em>en bonne santé</em> suenan igual de «salud», pero <em>mine</em> es un sustantivo → <strong>avoir</strong>; <em>en bonne santé</em> es un estado → <strong>être</strong>.<br>
+      <span class="good">Tu es en bonne santé. Tu as bonne mine.</span></p>
+    </div>
+  </section>
+
+  <!-- ============ 4 ============ -->
+  <section id="reguliers">
+    <div class="sec-head"><span class="sec-num">04</span><h2>El presente regular</h2></div>
+    <p class="sec-sub">En <mark class="end">verde</mark>, la terminación — igual que las marcaste tú en tus apuntes. Quita la terminación del infinitivo y pega la que toca.</p>
+
+    <h3>Verbos en -ER · la familia más grande</h3>
+    <div class="verbs" id="verbs-er"></div>
+
+    <h3>Verbos en -IR y en -RE</h3>
+    <div class="verbs" id="verbs-irre"></div>
+
+    <div class="rule">
+      <p><strong>Las tres series de terminaciones:</strong></p>
+      <p><code>-er</code> → e · es · e · ons · ez · ent &nbsp;<span style="color:var(--muted)">(las tres primeras y la última no se pronuncian)</span></p>
+      <p><code>-ir</code> tipo finir → is · is · it · issons · issez · issent</p>
+      <p><code>-re</code> → s · s · <strong>nada</strong> · ons · ez · ent</p>
+    </div>
+
+    <h3>-ER con cambio en la raíz · la «bota»</h3>
+    <p class="sec-sub">Cambian <strong>je, tu, il, ils</strong>. <strong>Nous</strong> y <strong>vous</strong> mantienen la raíz del infinitivo. Si dibujas un contorno alrededor de las cuatro que cambian, sale la forma de una bota.</p>
+    <div class="verbs" id="verbs-boot"></div>
+
+    <h3>-IR: cuatro tipos distintos</h3>
+    <div class="verbs" id="verbs-ir4"></div>
+  </section>
+
+  <!-- ============ 5 ============ -->
+  <section id="irreguliers">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Los irregulares</h2></div>
+    <p class="sec-sub">«Müssen auswendig gelernt werden», como pone tu hoja. Subrayadas en <span style="border-bottom:2px solid var(--warn)">naranja</span>, las formas que no siguen ninguna regla: esas se memorizan tal cual.</p>
+
+    <div class="verbs" id="verbs-irr"></div>
+
+    <div class="tip">
+      <p><strong>Dos listas cortas que te ahorran errores:</strong></p>
+      <p style="margin-top:6px">Solo <strong>3 verbos</strong> hacen <code>vous …tes</code> en vez de <code>-ez</code>: &nbsp;<strong>vous êtes · vous faites · vous dites</strong>.</p>
+      <p>Solo <strong>4 verbos</strong> hacen <code>ils …ont</code> en vez de <code>-ent</code>: &nbsp;<strong>ils ont · ils sont · ils vont · ils font</strong>.</p>
+      <p>Todo lo demás en <em>vous</em> acaba en <code>-ez</code> y en <em>ils</em> acaba en <code>-ent</code> (mudo).</p>
+    </div>
+  </section>
+
+  <!-- ============ 6 ============ -->
+  <section id="alphabet">
+    <div class="sec-head"><span class="sec-num">06</span><h2>L'alphabet</h2></div>
+    <p class="sec-sub">En el oral te van a decir <em>«Tu peux épeler ton nom ?»</em> y tienes que deletrear tu apellido. En <span style="color:var(--accent);font-weight:700">azul</span>, las letras que suenan distinto que en alemán — son las únicas que hay que aprender de verdad.</p>
+
+    <div class="alpha" id="alpha"></div>
+
+    <div class="rule">
+      <p><strong>Los acentos y signos, que también hay que decirlos:</strong></p>
+      <p><code>é</code> = e accent aigu · <code>è</code> = e accent grave · <code>ê</code> = e accent circonflexe · <code>ç</code> = c cédille · <code>ë</code> = e tréma</p>
+      <p><code>'</code> = apostrophe · <code>-</code> = trait d'union · <code>LL</code> = deux L · mayúscula = <strong>majuscule</strong> · minúscula = <strong>minuscule</strong> · espacio = <strong>espace</strong></p>
+    </div>
+
+    <div class="tip">
+      <p><strong>Tu apellido, letra por letra.</strong> Dilo en voz alta tres veces antes de dormir:</p>
+      <p style="font-family:var(--mono);font-size:.9rem;margin-top:8px">EL FENNIR → &nbsp;e · elle &nbsp;<span style="color:var(--muted)">(espace)</span>&nbsp; effe · e · deux enne · i · erre</p>
+      <p style="font-family:var(--mono);font-size:.9rem">YASSIN → &nbsp;i grec · a · esse · esse · i · enne</p>
+      <p style="margin-top:8px">La <strong>Y</strong> es la que falla todo el mundo: no es «ypsilon», es <strong>i grec</strong>.</p>
+    </div>
+  </section>
+
+  <!-- ============ 7 ============ -->
+  <section id="sons">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Les sons français</h2></div>
+    <p class="sec-sub">Tu tabla de sonidos, con el anclaje en alemán y en español.</p>
+
+    <div class="card">
+      <div id="sounds"></div>
+    </div>
+
+    <h3>Los sonidos nasales</h3>
+    <div class="card">
+      <div id="nasals"></div>
+    </div>
+
+    <div class="rule">
+      <p><strong>Letras finales que NO se pronuncian:</strong> <code>-e</code>, <code>-s</code>, <code>-t</code>, <code>-d</code>, <code>-x</code>, <code>-z</code> y la terminación <code>-ent</code> de <em>ils</em>.</p>
+      <p>Por eso <em>je parle</em>, <em>tu parles</em>, <em>il parle</em> y <em>ils parlent</em> suenan <strong>exactamente igual</strong>. Se escriben distinto, se oyen igual.</p>
+      <p>Pero <code>-er</code> al final del infinitivo sí suena: <em>parler</em> = «parlé».</p>
+    </div>
+  </section>
+
+  <!-- ============ 8 ============ -->
+  <section id="famille">
+    <div class="sec-head"><span class="sec-num">08</span><h2>La famille</h2></div>
+
+    <div class="card scroll-x">
+      <table class="lex">
+        <thead><tr><th>Masculin</th><th>Féminin</th><th>Español</th></tr></thead>
+        <tbody>
+          <tr><td class="fr">le père</td><td class="fr">la mère</td><td class="de">padre / madre</td></tr>
+          <tr><td class="fr">le frère</td><td class="fr">la sœur</td><td class="de">hermano / hermana</td></tr>
+          <tr><td class="fr">le grand-père</td><td class="fr">la grand-mère</td><td class="de">abuelo / abuela</td></tr>
+          <tr><td class="fr">le cousin</td><td class="fr">la cousine</td><td class="de">primo / prima</td></tr>
+          <tr><td class="fr">l'oncle</td><td class="fr">la tante</td><td class="de">tío / tía</td></tr>
+          <tr><td class="fr">le neveu</td><td class="fr">la nièce</td><td class="de">sobrino / sobrina</td></tr>
+          <tr><td class="fr">le mari</td><td class="fr">la femme</td><td class="de">marido / mujer</td></tr>
+          <tr><td class="fr">le fils</td><td class="fr">la fille</td><td class="de">hijo / hija</td></tr>
+          <tr><td class="fr">un fils unique</td><td class="fr">une fille unique</td><td class="de">hijo/a único/a</td></tr>
+          <tr><td class="fr">un frère jumeau</td><td class="fr">une sœur jumelle</td><td class="de">hermano/a gemelo/a</td></tr>
+          <tr><td class="fr">les grands-parents</td><td class="fr">les petits-enfants</td><td class="de">abuelos / nietos</td></tr>
+          <tr><td class="fr">les parents</td><td class="fr">les enfants</td><td class="de">padres / hijos</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule">
+      <p><strong>— Vous êtes combien dans ta famille ?</strong><br>— Dans ma famille, nous sommes quatre : mon père, ma mère, ma sœur et moi.</p>
+      <p><strong>— Tu as des frères et des sœurs ?</strong><br>— Non, je suis fils unique. / Oui, j'ai un frère et une sœur.</p>
+    </div>
+
+    <div class="tip">
+      <p><strong>Los dos huecos que dejaste en blanco</strong> en la página 11 los tienes en el quiz, preguntas 22 y 23. Inténtalos antes de mirar.</p>
+    </div>
+  </section>
+
+  <!-- ============ 9 ============ -->
+  <section id="animaux">
+    <div class="sec-head"><span class="sec-num">09</span><h2>Les animaux domestiques</h2></div>
+    <p class="sec-sub">«As-tu un animal domestique ? Il est de quelle race ? Comment est-il ?»</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="margin-top:0">Los animales</h3>
+        <div class="pairs">
+          <div><span><b>un chien</b></span><span>perro</span></div>
+          <div><span><b>un chat</b></span><span>gato</span></div>
+          <div><span><b>un lapin</b></span><span>conejo</span></div>
+          <div><span><b>un perroquet</b></span><span>loro</span></div>
+          <div><span><b>un poisson rouge</b></span><span>pez de colores</span></div>
+          <div><span><b>une tortue</b></span><span>tortuga</span></div>
+          <div><span><b>un hamster</b></span><span>hámster</span></div>
+          <div><span><b>un oiseau</b></span><span>pájaro</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Qué hace y cómo es</h3>
+        <div class="pairs">
+          <div><span><b>il aboie</b></span><span>ladra</span></div>
+          <div><span><b>il mord</b></span><span>muerde</span></div>
+          <div><span><b>il miaule</b></span><span>maúlla</span></div>
+          <div><span><b>il ronronne</b></span><span>ronronea</span></div>
+          <div><span><b>il chante</b></span><span>canta</span></div>
+          <div><span><b>il vole</b></span><span>vuela</span></div>
+          <div><span><b>il est doux</b></span><span>es suave/dulce</span></div>
+          <div><span><b>il est mignon</b></span><span>es mono</span></div>
+          <div><span><b>affectueux</b></span><span>cariñoso</span></div>
+          <div><span><b>agressif</b></span><span>agresivo</span></div>
+          <div><span><b>propre</b></span><span>limpio</span></div>
+          <div><span><b>vacciné</b></span><span>vacunado</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule">
+      <p><strong>Modelo para describir cualquier animal</strong> (cópialo y cambia las palabras):</p>
+      <p style="font-family:var(--mono);font-size:.86rem;margin-top:6px">J'ai un chien. C'est un labrador. C'est un mâle. Il a le poil long et brillant. Il est doux et affectueux. Il n'aboie pas et il ne mord pas. Il n'est pas agressif. Il est vacciné.</p>
+      <p style="margin-top:8px">Fíjate en la estructura: <strong>avoir</strong> para lo que tiene (le poil long, des moustaches, des plumes), <strong>être</strong> para cómo es (doux, mignon, propre). La misma regla de la sección 3.</p>
+    </div>
+  </section>
+
+  <!-- ============ 10 ============ -->
+  <section id="nombres">
+    <div class="sec-head"><span class="sec-num">10</span><h2>Nombres, jours et mois</h2></div>
+
+    <h3>0 – 20</h3>
+    <div class="card">
+      <div class="pairs">
+        <div><span><b>0</b></span><span>zéro</span></div>
+        <div><span><b>1</b></span><span>un</span></div>
+        <div><span><b>2</b></span><span>deux</span></div>
+        <div><span><b>3</b></span><span>trois</span></div>
+        <div><span><b>4</b></span><span>quatre</span></div>
+        <div><span><b>5</b></span><span>cinq</span></div>
+        <div><span><b>6</b></span><span>six</span></div>
+        <div><span><b>7</b></span><span>sept</span></div>
+        <div><span><b>8</b></span><span>huit</span></div>
+        <div><span><b>9</b></span><span>neuf</span></div>
+        <div><span><b>10</b></span><span>dix</span></div>
+        <div><span><b>11</b></span><span>onze</span></div>
+        <div><span><b>12</b></span><span>douze</span></div>
+        <div><span><b>13</b></span><span>treize</span></div>
+        <div><span><b>14</b></span><span>quatorze</span></div>
+        <div><span><b>15</b></span><span>quinze</span></div>
+        <div><span><b>16</b></span><span>seize</span></div>
+        <div><span><b>17</b></span><span>dix-sept</span></div>
+        <div><span><b>18</b></span><span>dix-huit</span></div>
+        <div><span><b>19</b></span><span>dix-neuf</span></div>
+        <div><span><b>20</b></span><span>vingt</span></div>
+      </div>
+    </div>
+
+    <h3>Las decenas</h3>
+    <div class="card">
+      <div class="pairs">
+        <div><span><b>30</b></span><span>trente</span></div>
+        <div><span><b>40</b></span><span>quarante</span></div>
+        <div><span><b>50</b></span><span>cinquante</span></div>
+        <div><span><b>60</b></span><span>soixante</span></div>
+        <div><span><b>70</b></span><span>soixante-dix</span></div>
+        <div><span><b>80</b></span><span>quatre-vingts</span></div>
+        <div><span><b>90</b></span><span>quatre-vingt-dix</span></div>
+        <div><span><b>100</b></span><span>cent</span></div>
+      </div>
+      <p class="note" style="font-size:.82rem;color:var(--muted);margin:12px 0 0;border-top:1px dashed var(--line);padding-top:8px">
+        21, 31, 41… llevan <strong>et</strong>: <em>vingt <strong>et</strong> un, trente <strong>et</strong> un</em>. Pero 22 es <em>vingt-deux</em>, sin et.<br>
+        Aquí en Suiza se dice <em>septante</em> (70), <em>huitante</em> (80) y <em>nonante</em> (90) — pero en el DELF usa las formas de arriba, que son las estándar.
+      </p>
+    </div>
+
+    <h3>Les jours &amp; les mois — todo en minúscula</h3>
+    <div class="grid-2">
+      <div class="card">
+        <div class="pairs">
+          <div><span><b>lundi</b></span><span>lunes</span></div>
+          <div><span><b>mardi</b></span><span>martes</span></div>
+          <div><span><b>mercredi</b></span><span>miércoles</span></div>
+          <div><span><b>jeudi</b></span><span>jueves</span></div>
+          <div><span><b>vendredi</b></span><span>viernes</span></div>
+          <div><span><b>samedi</b></span><span>sábado</span></div>
+          <div><span><b>dimanche</b></span><span>domingo</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="pairs">
+          <div><span><b>janvier</b></span><span>enero</span></div>
+          <div><span><b>février</b></span><span>febrero</span></div>
+          <div><span><b>mars</b></span><span>marzo</span></div>
+          <div><span><b>avril</b></span><span>abril</span></div>
+          <div><span><b>mai</b></span><span>mayo</span></div>
+          <div><span><b>juin</b></span><span>junio</span></div>
+          <div><span><b>juillet</b></span><span>julio</span></div>
+          <div><span><b>août</b></span><span>agosto</span></div>
+          <div><span><b>septembre</b></span><span>septiembre</span></div>
+          <div><span><b>octobre</b></span><span>octubre</span></div>
+          <div><span><b>novembre</b></span><span>noviembre</span></div>
+          <div><span><b>décembre</b></span><span>diciembre</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule">
+      <p><strong>La fecha:</strong> <code>le</code> + número + mes. <em>le 10 avril</em>, <em>le 24 juillet</em>.</p>
+      <p>Solo el día 1 es especial: <em>le <strong>1er</strong> janvier</em> (le premier janvier).</p>
+      <p>Cuidado con <em>juin</em> (junio) y <em>juillet</em> (julio): se parecen y se confunden.</p>
+    </div>
+  </section>
+
+  <!-- ============ 11 ============ -->
+  <section id="pays">
+    <div class="sec-head"><span class="sec-num">11</span><h2>Pays et nationalités</h2></div>
+    <p class="sec-sub">Aquí fallaste dos veces. El país lleva mayúscula; la nacionalidad no, y además cambia en femenino.</p>
+
+    <div class="card scroll-x">
+      <table class="lex">
+        <thead><tr><th>Pays</th><th>Masculin</th><th>Féminin</th><th>J'habite…</th></tr></thead>
+        <tbody>
+          <tr><td class="fr">la France</td><td>français</td><td>française</td><td class="de">en France</td></tr>
+          <tr><td class="fr">l'Espagne</td><td>espagnol</td><td>espagnole</td><td class="de">en Espagne</td></tr>
+          <tr><td class="fr">l'Allemagne</td><td>allemand</td><td>allemande</td><td class="de">en Allemagne</td></tr>
+          <tr><td class="fr">l'Italie</td><td>italien</td><td>italienne</td><td class="de">en Italie</td></tr>
+          <tr><td class="fr">la Suisse</td><td>suisse</td><td>suisse</td><td class="de">en Suisse</td></tr>
+          <tr><td class="fr">le Portugal</td><td>portugais</td><td>portugaise</td><td class="de">au Portugal</td></tr>
+          <tr><td class="fr">le Maroc</td><td>marocain</td><td>marocaine</td><td class="de">au Maroc</td></tr>
+          <tr><td class="fr">l'Angleterre</td><td>anglais</td><td>anglaise</td><td class="de">en Angleterre</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rule">
+      <p><strong>Las preposiciones, que es lo que se falla:</strong></p>
+      <p>País femenino (casi todos los acabados en <code>-e</code>) → <code>en</code> : <em>en France, en Espagne, en Suisse</em></p>
+      <p>País masculino → <code>au</code> : <em>au Portugal, au Maroc</em></p>
+      <p>Ciudad → <code>à</code> : <em>à Uster, à Paris, à Lyon</em></p>
+      <p>Y para el origen: <code>venir de</code> → <em>je viens <strong>de</strong> France</em>, <em>je viens <strong>d'</strong>Espagne</em>, <em>je viens <strong>du</strong> Portugal</em>.</p>
+    </div>
+  </section>
+
+  <!-- ============ 12 ============ -->
+  <section id="quiz">
+    <div class="sec-head"><span class="sec-num">12</span><h2>Quiz — 34 preguntas</h2></div>
+    <p class="sec-sub">Responde <strong>en voz alta o por escrito</strong> antes de abrir la tarjeta. Si la abres sin intentarlo, no sirve de nada.</p>
+
+    <div class="quiz-bar">
+      <button class="ctl ghost" id="toggle-all" type="button">Mostrar todas las respuestas</button>
+      <span class="quiz-count" id="quiz-count"></span>
+    </div>
+
+    <div id="quiz"></div>
+  </section>
+
+  <footer>
+    <p><strong>Plan para esta noche:</strong> sección 00 (tus fallos) → tu presentación de memoria de la sección 01 → el quiz entero. Mañana por la mañana, solo la sección 00 y deletrear tu apellido.</p>
+    <p>Bonne chance.</p>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    "use strict";
+
+    /* ---------- verb rendering ----------
+       "pronombre|raíz|terminación"
+         raíz "*"  → forma totalmente irregular (se memoriza)
+         term "-"  → sin terminación (verbos en -re)                  */
+
+    function renderForm(spec) {
+      var p = spec.split("|");
+      var pron = p[0], stem = p[1], end = p[2];
+      if (stem === "*") {
+        return '<span class="irr">' + end + "</span>";
+      }
+      if (end === "-") {
+        return stem + '<span class="zero" title="sin terminación">&#8709;</span>';
+      }
+      return stem + '<mark class="end">' + end + "</mark>";
+    }
+
+    function renderVerb(v) {
+      var dl = v.forms
+        .map(function (f) {
+          var pron = f.split("|")[0];
+          return "<dt>" + pron + "</dt><dd>" + renderForm(f) + "</dd>";
+        })
+        .join("");
+      return (
+        '<article class="verb"><header><h4>' +
+        v.name +
+        '</h4><span class="tag">' +
+        v.tag +
+        "</span></header><dl>" +
+        dl +
+        "</dl>" +
+        (v.note ? '<p class="note">' + v.note + "</p>" : "") +
+        "</article>"
+      );
+    }
+
+    function mount(id, list) {
+      var el = document.getElementById(id);
+      if (el) el.innerHTML = list.map(renderVerb).join("");
+    }
+
+    var P = ["je", "tu", "il/elle/on", "nous", "vous", "ils/elles"];
+
+    mount("verbs-base", [
+      {
+        name: "être",
+        tag: "ser / estar<br>sein",
+        forms: ["je|*|suis", "tu|*|es", "il/elle/on|*|est", "nous|*|sommes", "vous|*|êtes", "ils/elles|*|sont"],
+        note: "Todas irregulares. No hay atajo: se canta de memoria."
+      },
+      {
+        name: "avoir",
+        tag: "tener / haber<br>haben",
+        forms: ["j'|*|ai", "tu|*|as", "il/elle/on|*|a", "nous|av|ons", "vous|av|ez", "ils/elles|*|ont"],
+        note: "Solo <em>nous</em> y <em>vous</em> siguen la regla normal."
+      }
+    ]);
+
+    mount("verbs-er", [
+      {
+        name: "parler",
+        tag: "hablar<br>régulier -er",
+        forms: ["je|parl|e", "tu|parl|es", "il/elle/on|parl|e", "nous|parl|ons", "vous|parl|ez", "ils/elles|parl|ent"]
+      },
+      {
+        name: "aimer",
+        tag: "gustar / querer<br>régulier -er",
+        forms: ["j'|aim|e", "tu|aim|es", "il/elle/on|aim|e", "nous|aim|ons", "vous|aim|ez", "ils/elles|aim|ent"],
+        note: "Empieza por vocal → <strong>j'</strong>aime, no «je aime»."
+      },
+      {
+        name: "habiter",
+        tag: "vivir<br>régulier -er",
+        forms: ["j'|habit|e", "tu|habit|es", "il/elle/on|habit|e", "nous|habit|ons", "vous|habit|ez", "ils/elles|habit|ent"],
+        note: "La <em>h</em> es muda, así que también lleva <strong>j'</strong>."
+      },
+      {
+        name: "travailler",
+        tag: "trabajar<br>régulier -er",
+        forms: ["je|travaill|e", "tu|travaill|es", "il/elle/on|travaill|e", "nous|travaill|ons", "vous|travaill|ez", "ils/elles|travaill|ent"]
+      }
+    ]);
+
+    mount("verbs-irre", [
+      {
+        name: "finir",
+        tag: "terminar<br>régulier -ir",
+        forms: ["je|fin|is", "tu|fin|is", "il/elle/on|fin|it", "nous|fin|issons", "vous|fin|issez", "ils/elles|fin|issent"],
+        note: "El <em>-iss-</em> del plural es la marca de este grupo."
+      },
+      {
+        name: "vendre",
+        tag: "vender<br>régulier -re",
+        forms: ["je|vend|s", "tu|vend|s", "il/elle/on|vend|-", "nous|vend|ons", "vous|vend|ez", "ils/elles|vend|ent"],
+        note: "<strong>il vend</strong> no lleva nada: la raíz sola."
+      },
+      {
+        name: "attendre",
+        tag: "esperar<br>régulier -re",
+        forms: ["j'|attend|s", "tu|attend|s", "il/elle/on|attend|-", "nous|attend|ons", "vous|attend|ez", "ils/elles|attend|ent"]
+      }
+    ]);
+
+    mount("verbs-boot", [
+      {
+        name: "manger",
+        tag: "comer<br>-ger",
+        forms: ["je|mang|e", "tu|mang|es", "il/elle/on|mang|e", "nous|mange|ons", "vous|mang|ez", "ils/elles|mang|ent"],
+        note: "<strong>nous mangeons</strong> guarda la <em>e</em> para que la g siga sonando suave."
+      },
+      {
+        name: "appeler",
+        tag: "llamar<br>doble L",
+        forms: ["j'|appell|e", "tu|appell|es", "il/elle/on|appell|e", "nous|appel|ons", "vous|appel|ez", "ils/elles|appell|ent"],
+        note: "Doble L en la bota. De aquí sale <em>je m'appelle</em>."
+      },
+      {
+        name: "jeter",
+        tag: "tirar<br>doble T",
+        forms: ["je|jett|e", "tu|jett|es", "il/elle/on|jett|e", "nous|jet|ons", "vous|jet|ez", "ils/elles|jett|ent"]
+      },
+      {
+        name: "acheter",
+        tag: "comprar<br>è",
+        forms: ["j'|achèt|e", "tu|achèt|es", "il/elle/on|achèt|e", "nous|achet|ons", "vous|achet|ez", "ils/elles|achèt|ent"],
+        note: "Acento grave en la bota: <em>achète</em>, pero <em>nous achetons</em>."
+      },
+      {
+        name: "préférer",
+        tag: "preferir<br>é → è",
+        forms: ["je|préfèr|e", "tu|préfèr|es", "il/elle/on|préfèr|e", "nous|préfér|ons", "vous|préfér|ez", "ils/elles|préfèr|ent"],
+        note: "La segunda <em>é</em> se abre a <em>è</em> en la bota."
+      }
+    ]);
+
+    mount("verbs-ir4", [
+      {
+        name: "finir",
+        tag: "type 1<br>-iss-",
+        forms: ["je|fin|is", "tu|fin|is", "il/elle/on|fin|it", "nous|fin|issons", "vous|fin|issez", "ils/elles|fin|issent"]
+      },
+      {
+        name: "partir",
+        tag: "type 2<br>pierde la consonante",
+        forms: ["je|par|s", "tu|par|s", "il/elle/on|par|t", "nous|part|ons", "vous|part|ez", "ils/elles|part|ent"],
+        note: "El singular pierde la <em>t</em>: <em>je pars</em>, no «je parts»."
+      },
+      {
+        name: "offrir",
+        tag: "type 3 «cocos»<br>se porta como -er",
+        forms: ["j'|offr|e", "tu|offr|es", "il/elle/on|offr|e", "nous|offr|ons", "vous|offr|ez", "ils/elles|offr|ent"],
+        note: "Acaba en -ir pero usa las terminaciones de -er."
+      },
+      {
+        name: "venir",
+        tag: "type 4<br>vien- / ven- / vienn-",
+        forms: ["je|vien|s", "tu|vien|s", "il/elle/on|vien|t", "nous|ven|ons", "vous|ven|ez", "ils/elles|vienn|ent"],
+        note: "De aquí sale <em>je viens d'Espagne</em>."
+      }
+    ]);
+
+    mount("verbs-irr", [
+      {
+        name: "aller",
+        tag: "ir<br>gehen",
+        forms: ["je|*|vais", "tu|*|vas", "il/elle/on|*|va", "nous|all|ons", "vous|all|ez", "ils/elles|*|vont"]
+      },
+      {
+        name: "faire",
+        tag: "hacer<br>machen",
+        forms: ["je|fai|s", "tu|fai|s", "il/elle/on|fai|t", "nous|fais|ons", "vous|*|faites", "ils/elles|*|font"],
+        note: "<strong>vous faites</strong> y <strong>ils font</strong>: las dos raras."
+      },
+      {
+        name: "prendre",
+        tag: "coger / tomar<br>ap-, com-, sur-",
+        forms: ["je|prend|s", "tu|prend|s", "il/elle/on|*|prend", "nous|pren|ons", "vous|pren|ez", "ils/elles|prenn|ent"],
+        note: "Igual: apprendre, comprendre, surprendre."
+      },
+      {
+        name: "mettre",
+        tag: "poner<br>setzen",
+        forms: ["je|met|s", "tu|met|s", "il/elle/on|*|met", "nous|mett|ons", "vous|mett|ez", "ils/elles|mett|ent"]
+      },
+      {
+        name: "vouloir",
+        tag: "querer<br>wollen",
+        forms: ["je|veu|x", "tu|veu|x", "il/elle/on|veu|t", "nous|voul|ons", "vous|voul|ez", "ils/elles|veul|ent"],
+        note: "<em>je veux</em> con <strong>x</strong>, no con s."
+      },
+      {
+        name: "pouvoir",
+        tag: "poder<br>können",
+        forms: ["je|peu|x", "tu|peu|x", "il/elle/on|peu|t", "nous|pouv|ons", "vous|pouv|ez", "ils/elles|peuv|ent"],
+        note: "De aquí: <em>Tu peux épeler ton nom ?</em>"
+      },
+      {
+        name: "savoir",
+        tag: "saber<br>wissen",
+        forms: ["je|sai|s", "tu|sai|s", "il/elle/on|sai|t", "nous|sav|ons", "vous|sav|ez", "ils/elles|sav|ent"]
+      },
+      {
+        name: "devoir",
+        tag: "deber<br>müssen",
+        forms: ["je|doi|s", "tu|doi|s", "il/elle/on|doi|t", "nous|dev|ons", "vous|dev|ez", "ils/elles|doiv|ent"]
+      },
+      {
+        name: "écrire",
+        tag: "escribir<br>schreiben",
+        forms: ["j'|écri|s", "tu|écri|s", "il/elle/on|écri|t", "nous|écriv|ons", "vous|écriv|ez", "ils/elles|écriv|ent"]
+      },
+      {
+        name: "lire",
+        tag: "leer<br>lesen",
+        forms: ["je|li|s", "tu|li|s", "il/elle/on|li|t", "nous|lis|ons", "vous|lis|ez", "ils/elles|lis|ent"]
+      },
+      {
+        name: "dire",
+        tag: "decir<br>sagen",
+        forms: ["je|di|s", "tu|di|s", "il/elle/on|di|t", "nous|dis|ons", "vous|*|dites", "ils/elles|dis|ent"],
+        note: "<strong>vous dites</strong>, no «vous disez»."
+      },
+      {
+        name: "connaître",
+        tag: "conocer<br>kennen",
+        forms: ["je|connai|s", "tu|connai|s", "il/elle/on|connaî|t", "nous|connaiss|ons", "vous|connaiss|ez", "ils/elles|connaiss|ent"],
+        note: "El acento circunflejo solo en <em>il connaît</em>."
+      },
+      {
+        name: "voir",
+        tag: "ver<br>sehen",
+        forms: ["je|voi|s", "tu|voi|s", "il/elle/on|voi|t", "nous|voy|ons", "vous|voy|ez", "ils/elles|voi|ent"]
+      },
+      {
+        name: "boire",
+        tag: "beber<br>trinken",
+        forms: ["je|boi|s", "tu|boi|s", "il/elle/on|boi|t", "nous|buv|ons", "vous|buv|ez", "ils/elles|boiv|ent"],
+        note: "<em>nous buvons</em> cambia la raíz entera."
+      }
+    ]);
+
+    /* ---------- alphabet ---------- */
+    var ALPHA = [
+      ["A", "a", 0], ["B", "bé", 0], ["C", "cé", 0], ["D", "dé", 0],
+      ["E", "ö", 1], ["F", "effe", 0], ["G", "ché", 1], ["H", "asch", 1],
+      ["I", "i", 0], ["J", "chi", 1], ["K", "ka", 0], ["L", "elle", 0],
+      ["M", "emme", 0], ["N", "enne", 0], ["O", "o", 0], ["P", "pé", 0],
+      ["Q", "kü", 1], ["R", "erre", 1], ["S", "esse", 0], ["T", "té", 0],
+      ["U", "ü", 1], ["V", "vé / we", 1], ["W", "double vé", 1], ["X", "ixe", 0],
+      ["Y", "i grec", 1], ["Z", "zède", 0]
+    ];
+    var alphaEl = document.getElementById("alpha");
+    if (alphaEl) {
+      alphaEl.innerHTML = ALPHA.map(function (l) {
+        return '<div class="letter' + (l[2] ? " diff" : "") + '"><b>' + l[0] + "</b><span>" + l[1] + "</span></div>";
+      }).join("");
+    }
+
+    /* ---------- sounds ---------- */
+    var SOUNDS = [
+      ["a", "como en alemán / español", "a, âtre, alarme"],
+      ["e", "suena <strong>ö</strong> — también <em>eu</em>", "je, le, appeler, heure, heureux"],
+      ["é", "<strong>e cerrada</strong> — también <em>et</em>, <em>-er</em>", "été, parler, palet"],
+      ["è", "<strong>ä</strong>, e abierta — también <em>elle</em>, <em>-ette</em>", "achète, appel, elle, brochette"],
+      ["i", "<strong>i</strong> — la <em>y</em> suena igual", "vie, y, Italie, hystérie"],
+      ["o", "<strong>o</strong> — también <em>au</em>, <em>eau</em>", "chaud, bateau, beau, eau"],
+      ["u", "<strong>ü</strong> alemana — NO la u española", "bu, su, pu, hurluberlu"],
+      ["ou", "<strong>u</strong> española", "houx, bout, chouchou"]
+    ];
+    var soundsEl = document.getElementById("sounds");
+    if (soundsEl) {
+      soundsEl.innerHTML = SOUNDS.map(function (s) {
+        return '<div class="sound"><b>' + s[0] + "</b><div>" + s[1] + '<span class="ex">' + s[2] + "</span></div></div>";
+      }).join("");
+    }
+
+    var NASALS = [
+      ["an / en", "boca abierta, aire por la nariz", "an, en, pendant"],
+      ["in / ein / ain", "entre «e» y «a», nasal", "vin, pain, plein"],
+      ["un", "nasal redondeada", "un, aucun, chacun"],
+      ["on", "<strong>o</strong> nasal, labios redondos", "on, pont, pondre"],
+      ["oi", "se pronuncia <strong>ua</strong>", "soi, moi, toi"],
+      ["oin", "<strong>uen</strong> nasal", "poing, pingouin, lointain"],
+      ["ien", "<strong>ien</strong> nasal", "tiens, viens, le mien"]
+    ];
+    var nasalsEl = document.getElementById("nasals");
+    if (nasalsEl) {
+      nasalsEl.innerHTML = NASALS.map(function (s) {
+        return '<div class="sound"><b>' + s[0] + "</b><div>" + s[1] + '<span class="ex">' + s[2] + "</span></div></div>";
+      }).join("");
+    }
+
+    /* ---------- quiz ---------- */
+    var QUIZ = [
+      { g: "Être ou avoir" },
+      { q: "Mon grand-père ___ fatigué. Il ___ mal au dos.", a: "est · a", w: "fatigué = adjetivo → être. mal au dos = sustantivo → avoir." },
+      { q: "Tu ___ en bonne santé. Tu ___ bonne mine.", a: "es · as", w: "Este lo fallaste: «en bonne santé» es un estado → être; «bonne mine» es un sustantivo → avoir." },
+      { q: "Ma sœur ___ les yeux bleus. Elle ___ des tresses. Elle ___ jolie.", a: "a · a · est", w: "Ojo: con <em>elle</em> nunca va «es». Solo est o a." },
+      { q: "Ma mère ___ trente ans.", a: "a", w: "La edad siempre con avoir." },
+      { q: "Je ___ fatigué.", a: "suis", w: "Adjetivo → être." },
+      { q: "Vous ___ en retard.", a: "êtes", w: "«en retard» es un estado → être." },
+      { q: "Il ___ toujours faim.", a: "a", w: "faim es un sustantivo → avoir." },
+      { q: "Nous ___ amis avec les voisins.", a: "sommes", w: "" },
+      { q: "Elles ___ une grande maison.", a: "ont", w: "Posesión → avoir." },
+      { q: "___ ai mal à la tête.", a: "J'", w: "Delante de vocal, «je» se convierte en j'." },
+
+      { g: "Le présent" },
+      { q: "Les loups ___ de grands crocs. (avoir)", a: "ont", w: "El ejercicio 4.2 que dejaste en blanco." },
+      { q: "Mon frère ___ à l'école. (être)", a: "est", w: "El ejercicio 4.3. Al pasar de «mes frères» a «mon frère», el verbo va al singular." },
+      { q: "Conjuga <em>habiter</em> con nous y con ils.", a: "nous habitons · ils habitent", w: "" },
+      { q: "Conjuga <em>manger</em> con nous. ¿Por qué es rara?", a: "nous mangeons", w: "Guarda la e para que la g siga sonando suave." },
+      { q: "Conjuga <em>préférer</em> con je y con nous.", a: "je préfère · nous préférons", w: "La bota cambia é → è, pero nous/vous no." },
+      { q: "Conjuga <em>venir</em> con je, nous, ils.", a: "je viens · nous venons · ils viennent", w: "Tres raíces distintas: vien- / ven- / vienn-." },
+      { q: "Conjuga <em>faire</em> con vous y con ils.", a: "vous faites · ils font", w: "Las dos irregulares. No es «vous faisez» ni «ils faisent»." },
+      { q: "Conjuga <em>dire</em> con vous.", a: "vous dites", w: "Uno de los tres verbos con «-tes»: êtes, faites, dites." },
+      { q: "¿Qué lleva <em>il</em> en <em>vendre</em>?", a: "il vend — nada", w: "Los verbos en -re no llevan terminación en la 3ª persona del singular." },
+      { q: "Conjuga <em>boire</em> con nous.", a: "nous buvons", w: "Cambia la raíz entera: boi- → buv-." },
+      { q: "¿Qué cuatro verbos hacen <em>ils …ont</em>?", a: "ils ont · ils sont · ils vont · ils font", w: "Solo estos cuatro. Todo lo demás acaba en -ent." },
+
+      { g: "La famille" },
+      { q: "Mes grands-parents ont un fils, une fille et quatre ___.", a: "petits-enfants", w: "Hueco que dejaste en blanco en la página 11." },
+      { q: "Ma mère n'a pas de frère ni de sœur. Elle est ___.", a: "fille unique", w: "Femenino: <em>fille</em> unique, no <em>fils</em> unique." },
+      { q: "Le frère de ton père est ton ___.", a: "oncle", w: "" },
+      { q: "Je suis la ___ de mon oncle.", a: "nièce", w: "Masculino sería <em>le neveu</em>." },
+      { q: "¿Cómo dices «Somos cuatro en mi familia»?", a: "Dans ma famille, nous sommes quatre.", w: "" },
+
+      { g: "La fiche et l'identité" },
+      { q: "En la ficha, ¿qué va en <em>Nom</em> y qué va en <em>Prénom</em>?", a: "Nom = apellido (Nachname) · Prénom = nombre (Vorname)", w: "Tu error más repetido. Nom NO es el nombre." },
+      { q: "Michel vit à Toulouse mais il vient de Lyon. ¿Qué pones en <em>Adresse</em>?", a: "Toulouse", w: "«Adresse» es donde vive; Lyon es de donde viene." },
+      { q: "Michel es de Francia y habla italiano. ¿Cuál es su <em>nationalité</em>?", a: "français", w: "Es la nacionalidad, no el idioma ni el país. Marina, su madre, es <em>italienne</em>." },
+      { q: "Traduce: «Nací el 10 de abril de 2005 en España.»", a: "Je suis né le 10 avril 2005 en Espagne.", w: "Mes en minúscula, sin «de», y España es Espagne." },
+      { q: "¿Cómo se dice @ en voz alta?", a: "arobase", w: "" },
+
+      { g: "L'alphabet et les sons" },
+      { q: "Deletrea EL FENNIR en francés.", a: "e · elle · effe · e · deux enne · i · erre", w: "" },
+      { q: "¿Cómo se llama la letra Y?", a: "i grec", w: "No «ypsilon». Cae siempre." },
+      { q: "¿Cómo suena <em>ou</em> y cómo suena <em>u</em>?", a: "ou = u española · u = ü alemana", w: "<em>bout</em> suena «bu»; <em>bu</em> suena «bü»." },
+      { q: "¿Suenan igual <em>je parle</em>, <em>tu parles</em> y <em>ils parlent</em>?", a: "Sí, las tres suenan idénticas.", w: "Las terminaciones -e, -es y -ent son mudas. Se distinguen solo por escrito." }
+    ];
+
+    var quizEl = document.getElementById("quiz");
+    if (quizEl) {
+      var n = 0;
+      quizEl.innerHTML = QUIZ.map(function (item) {
+        if (item.g) return '<p class="qgroup">' + item.g + "</p>";
+        n++;
+        return (
+          '<details class="q"><summary><span class="n">' + n + "</span><span>" + item.q +
+          '</span></summary><div class="ans"><span class="sol">' + item.a + "</span>" +
+          (item.w ? '<p class="why">' + item.w + "</p>" : "") +
+          "</div></details>"
+        );
+      }).join("");
+
+      var countEl = document.getElementById("quiz-count");
+      if (countEl) countEl.textContent = n + " preguntas";
+
+      var btn = document.getElementById("toggle-all");
+      if (btn) {
+        btn.addEventListener("click", function () {
+          var all = quizEl.querySelectorAll("details.q");
+          var anyClosed = false;
+          all.forEach(function (d) { if (!d.open) anyClosed = true; });
+          all.forEach(function (d) { d.open = anyClosed; });
+          btn.textContent = anyClosed ? "Ocultar todas las respuestas" : "Mostrar todas las respuestas";
+        });
+      }
+    }
+  })();
+</script>
