@@ -48,6 +48,17 @@ window.FENNIR_PRICING = {
       schemaName: "Landing Page"
     },
     {
+      id: "website-3",
+      icon: "📄",
+      name: { es: "Web de 3 páginas", de: "Website mit 3 Seiten" },
+      desc: {
+        es: "Inicio, servicios y contacto. El punto de partida para un negocio pequeño que necesita estar online bien hecho, sin pagar por páginas que aún no usa.",
+        de: "Start, Leistungen und Kontakt. Der Einstieg für kleine Unternehmen, die sauber online sein wollen, ohne für Seiten zu zahlen, die sie noch nicht brauchen."
+      },
+      price: 2900,
+      schemaName: "Website, 3 pages"
+    },
+    {
       id: "website",
       icon: "🌐",
       name: { es: "Web completa", de: "Komplette Website" },
@@ -90,6 +101,28 @@ window.FENNIR_PRICING = {
       },
       price: 2400,
       schemaName: "Chatbot"
+    },
+    {
+      id: "social-setup",
+      icon: "📱",
+      name: { es: "Redes sociales — configuración", de: "Social Media — Einrichtung" },
+      desc: {
+        es: "Perfiles de empresa en Facebook, Instagram y LinkedIn, con tu marca y enlazados a tu web y a tu ficha de Google.",
+        de: "Unternehmensprofile auf Facebook, Instagram und LinkedIn, mit Ihrer Marke und verknüpft mit Website und Google-Eintrag."
+      },
+      price: 900,
+      schemaName: "Social media profiles, setup"
+    },
+    {
+      id: "ads-setup",
+      icon: "🎯",
+      name: { es: "Google Ads — configuración", de: "Google Ads — Einrichtung" },
+      desc: {
+        es: "Cuenta, estructura de campañas, palabras clave y seguimiento de conversiones. Tu presupuesto de anuncios lo pagas tú directamente a Google.",
+        de: "Konto, Kampagnenstruktur, Keywords und Conversion-Tracking. Ihr Werbebudget zahlen Sie direkt an Google."
+      },
+      price: 900,
+      schemaName: "Google Ads, setup"
     }
   ],
 
@@ -107,6 +140,19 @@ window.FENNIR_PRICING = {
       meta: { es: "Sin contrato · Cancelas cuando quieras", de: "Kein Vertrag · Jederzeit kündbar" },
       cta: { es: "Empezar Care", de: "Care starten" },
       schemaName: "Monthly Care"
+    },
+    {
+      id: "ads-management",
+      name: { es: "Google Ads — gestión", de: "Google Ads — Betreuung" },
+      desc: {
+        es: "Superviso y mejoro tus campañas: palabras clave, negativas, anuncios y segmentación. Cada mes revisamos qué búsquedas traen clientes de verdad y ahí va el presupuesto.",
+        de: "Ich überwache und verbessere Ihre Kampagnen: Keywords, Negativ-Keywords, Anzeigen und Targeting. Jeden Monat prüfen wir, welche Suchanfragen echte Kunden bringen — dorthin fliesst das Budget."
+      },
+      price: 150,
+      from: false,
+      meta: { es: "Sin contrato · Tu presupuesto lo pagas a Google", de: "Kein Vertrag · Ihr Budget zahlen Sie an Google" },
+      cta: { es: "Empezar con Ads", de: "Mit Ads starten" },
+      schemaName: "Google Ads, monthly management"
     },
     {
       id: "partner",

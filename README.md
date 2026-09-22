@@ -34,11 +34,15 @@ Todo en **CHF, sin IVA**: el precio que ve el cliente es el que paga.
 |---|---|
 | Asistente telefónica IA (*Telefon-Assistentin*) | desde **CHF 1'900** de instalación **+ CHF 369/mes** |
 | Landing page | desde **CHF 1'900** |
+| Web de 3 páginas | desde **CHF 2'900** |
 | Web completa | desde **CHF 3'900** |
 | Chatbot | desde **CHF 2'400** |
 | Automatización | desde **CHF 4'900** |
 | Web App | desde **CHF 9'900** |
+| Redes sociales (configuración) | desde **CHF 900** |
+| Google Ads (configuración) | desde **CHF 900** |
 | Website Care (mantenimiento) | **CHF 199/mes** · cancelable |
+| Google Ads (gestión mensual) | **CHF 150/mes** · el presupuesto lo paga el cliente a Google |
 | Partner técnico | desde **CHF 1'500/mes** · 10 h/mes incluidas |
 
 ### Cómo cambiar un precio (sin romper la sincronización)
