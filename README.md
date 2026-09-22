@@ -15,10 +15,51 @@ Sirve para dos objetivos:
 
 | Archivo | Qué es |
 |---|---|
-| `index.html` | Página principal: inicio, servicios, proyectos, sobre mí, contacto |
+| `index.html` | Página principal: inicio, servicios y precios, proyectos, sobre mí, contacto |
 | `cv.html` | CV / Lebenslauf online (bilingüe, listo para imprimir o exportar a PDF) |
 | `styles.css` | Estilos y diseño |
-| `script.js` | Cambio de idioma ES/DE y pequeñas funciones |
+| `script.js` | Cambio de idioma ES/DE, pintado de los precios y pequeñas funciones |
+| **`pricing.js`** | **La lista de precios. Fuente única: si cambias un precio, se cambia aquí** |
+| `verificar-precios.mjs` | Comprueba que `pricing.js`, `index.html` y **fennir.ch** dicen lo mismo |
+| `fluffybites.html` | Landing page de ejemplo (proyecto de portafolio) |
+
+---
+
+## 💶 Precios — sincronizados con fennir.ch
+
+Estos son los mismos precios que están publicados en **https://fennir.ch**.
+Todo en **CHF, sin IVA**: el precio que ve el cliente es el que paga.
+
+| Servicio | Precio |
+|---|---|
+| Asistente telefónica IA (*Telefon-Assistentin*) | desde **CHF 1'900** de instalación **+ CHF 369/mes** |
+| Landing page | desde **CHF 1'900** |
+| Web completa | desde **CHF 3'900** |
+| Chatbot | desde **CHF 2'400** |
+| Automatización | desde **CHF 4'900** |
+| Web App | desde **CHF 9'900** |
+| Website Care (mantenimiento) | **CHF 199/mes** · cancelable |
+| Partner técnico | desde **CHF 1'500/mes** · 10 h/mes incluidas |
+
+### Cómo cambiar un precio (sin romper la sincronización)
+
+1. Cambia el número **sólo en `pricing.js`**. Nunca escribas un precio a mano en el HTML.
+2. Regenera los datos que leen Google y los asistentes de IA:
+   ```bash
+   node verificar-precios.mjs --escribir
+   ```
+3. Cambia el mismo precio en **fennir.ch**.
+4. Comprueba que todo coincide:
+   ```bash
+   node verificar-precios.mjs
+   ```
+   - ✅ verde = `pricing.js` = `index.html` = `fennir.ch`
+   - ❌ rojo = te dice exactamente qué precio baila y dónde (y sale con código 1, así que sirve para CI)
+   - `--sin-red` salta la comprobación contra la web en vivo.
+
+> Los textos de las tarjetas, el badge "El producto estrella", la nota de IVA y los enlaces
+> de WhatsApp también salen de `pricing.js`, en español y alemán. El mensaje de WhatsApp se
+> envía en el idioma en el que el cliente está viendo la página.
 
 ---
 
@@ -52,7 +93,11 @@ Alternativas gratuitas igual de fáciles: **Netlify** o **Vercel** (arrastrar y 
 
 **Para ingresos (freelance):**
 - Comparte el enlace en grupos, foros y redes donde se busquen webs.
-- Ofrece un primer trabajo a buen precio para conseguir reseñas y ejemplos reales.
+- Manda siempre el enlace de la sección de precios: llegar con el precio ya puesto
+  te ahorra la conversación incómoda y filtra a quien no puede pagarte.
+- No bajes el precio para cerrar el primer trato: si necesitas ceder algo, quita
+  alcance (menos páginas, menos funciones), no dinero. Bajar el precio una vez lo
+  baja para siempre con ese cliente.
 - Añade cada proyecto terminado a la sección "Proyectos".
 
 **Para Bewerbungen (solicitudes de empleo):**
@@ -65,6 +110,7 @@ Alternativas gratuitas igual de fáciles: **Netlify** o **Vercel** (arrastrar y 
 ## ✅ Próximos pasos sugeridos
 
 - [ ] Rellenar tu experiencia y formación reales en `cv.html`.
+- [ ] Ejecutar `node verificar-precios.mjs` cada vez que toques un precio.
 - [ ] Añadir 1–3 proyectos reales con imagen y enlace.
 - [ ] Activar el formulario con Formspree.
 - [ ] Publicar en GitHub Pages y guardar el enlace.

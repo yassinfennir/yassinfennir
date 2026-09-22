@@ -93,3 +93,34 @@ Fórmula para cualquier conversación de venta:
 
 La venta es un deporte: se mejora practicando con personas reales,
 no acumulando herramientas.
+
+---
+
+## 7. Defender tu precio (sin bajarlo)
+
+Tus precios están en la web: desde CHF 1'900 una landing, CHF 3'900 una web completa.
+No son caros: son el precio de que alguien te dedique horas y responda del resultado.
+Lo que hunde a la mayoría no es el precio, es cómo lo dicen.
+
+**Di el precio y cállate.** Es la regla más difícil y la que más dinero da.
+El silencio incomoda, y el que habla primero para llenarlo suele regalar un descuento
+que nadie le había pedido.
+
+**Nunca justifiques el precio con tus horas.** Al cliente no le importa cuánto tardas.
+Le importa lo que gana o deja de perder. "Son CHF 3'900" y, si pregunta, lo comparas
+con lo que le cuesta NO tenerlo: un cliente perdido al mes ya paga la web.
+
+**Si te dicen "es caro":**
+1. Pregunta: "¿Caro comparado con qué?" — casi siempre lo comparan con una plantilla
+   de 50 €, y ahí explicas la diferencia sin atacar.
+2. Si de verdad no tiene presupuesto, **quita alcance, no precio**: menos páginas,
+   sin chatbot, sin automatización. El precio por hora de tu trabajo no cambia nunca.
+3. Si aun así no llega, no es tu cliente hoy. Déjale la puerta abierta y sigue.
+   Un cliente que sólo te elige por barato te deja en cuanto aparezca alguien más barato.
+
+**El descuento se paga con algo.** Si haces un precio especial, que sea a cambio de
+algo real: pago por adelantado, un testimonio en vídeo, permiso para enseñar el proyecto,
+o tres referencias. Un descuento gratis enseña que tu primer precio era mentira.
+
+**Sube el precio cada 3 proyectos terminados.** No esperes a "sentirte listo":
+el precio sube cuando tu portafolio sube, no cuando se te pasa el miedo.
